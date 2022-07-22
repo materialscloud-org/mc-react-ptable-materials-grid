@@ -1,23 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import PTable from './components/ptable';
+import Button from '@mui/material/Button';
+import MaterialsTable from './components/materials-table';
+
+import TextField from "@mui/material/TextField";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <PTable />
+      {/* <Button variant="contained">Hello World</Button> */}
+      <div><label style={{fontWeight:'bold',marginLeft:'0.5em'}}>Search formula or MC3d-ID</label><TextField style={{marginLeft:'0.5em'}} label="Search"/></div>
+      <MaterialsTable />
     </div>
   );
 }

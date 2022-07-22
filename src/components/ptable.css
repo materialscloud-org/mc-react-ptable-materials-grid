@@ -1,0 +1,124 @@
+
+.ptable_outer {
+    /* width: 95%; */
+    /* margin: 0 auto; */
+    margin-top: -4vw;
+    /* max-width: 1700px; */
+    transform: scale(0.8);
+}
+
+.ptable {
+    display: grid;
+    grid-template-columns: repeat(17, auto) 1fr;
+    grid-template-rows: repeat(10, auto) 1fr;
+}
+
+.element {
+    border: 2px solid #999;
+    height: 5vw;
+    width: 5vw;
+    line-height: 1.0;
+    margin-right: -2px;
+    margin-bottom: -2px;
+    cursor: default; /* don't charge cursor into a bar when hovering over text */
+    user-select: none; /* don't select text upon clicking */
+}
+
+
+.element-state0 {
+    background: #fff;
+}
+
+.element-state1 {
+    background: rgb(122, 211, 126);
+}
+
+.element-state2 {
+    background: rgb(238, 130, 130);
+}
+
+.element-state3 {
+    background: rgb(129, 137, 241);
+}
+
+.element-disabled {
+    background: rgb(235, 235, 235);
+    pointer-events: none; /* no hover on disabled elements */
+}
+
+.element:hover {
+    filter: brightness(85%);
+}
+
+.elem_num {
+    float: left;
+    font-size: 1.2vw;
+    position: absolute;
+    margin: 1px;
+}
+  
+.elem_sym {
+    text-align: center;
+    font-size: 2.5vw;
+    margin-top: 1.5vw;
+}
+
+/* ----------------------------- */
+/* element locations in the grid */
+
+.element-2 {
+    grid-column-start: 18;
+}
+
+.element-5 {
+    grid-column-start: 13;
+}
+
+.element-13 {
+    grid-column-start: 13;
+}
+
+/* Lanthanoids and Actonoids */
+
+.element-58 {
+    grid-column-start: 4;
+}
+
+.element-90 {
+    grid-column-start: 4;
+}
+
+.lanthanide {
+    margin-top: 2.5vw;
+}
+
+/* ----------------------------- */
+
+.help_button {
+    margin: auto;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    border: 2px solid #999;
+    height: 3vw;
+    width: 3vw;
+    line-height: 1.0;
+    border-radius: 50%;
+    /* margin-right: -1px; */
+    /* margin-top: -1px; */
+    /* text-align: center; */
+    cursor: default; /* don't charge cursor into a bar when hovering over text */
+    user-select: none; /* don't select text upon clicking */
+    justify-items: center;
+    align-items: center;
+    background: #fff;
+}
+
+.help_text {
+    text-align: center;
+    font-size: 2.0vw;
+    margin-top: 0.6vw;
+}
+
+.help_button:hover {
+    filter: brightness(85%);
+}
