@@ -1,14 +1,14 @@
 /* Variables */
 :root {
-    --element-box-size: 40px;
-  }
+  --element-box-size: 40px;
+}
 
 .ptable_outer {
-    /* width: 95%; */
-    /* margin: 0 auto; */
-    /*margin-top: -4vw;*/
-    /* max-width: 1700px; */
-    /* transform: scale(0.8); */
+  /* width: 95%; */
+  /* margin: 0 auto; */
+  /*margin-top: -4vw;*/
+  /* max-width: 1700px; */
+  /* transform: scale(0.8); */
   text-align: center;
   display: flex;
   align-items: center;
@@ -16,121 +16,120 @@
 }
 
 .ptable {
-    display: grid;
-    grid-template-columns: repeat(17, auto) 1fr;
-    grid-template-rows: repeat(10, auto) 1fr;
+  display: grid;
+  grid-template-columns: repeat(17, auto) 1fr;
+  grid-template-rows: repeat(10, auto) 1fr;
 }
 
 .element {
-    border: 2px solid #999;
-    height: var(--element-box-size);
-    width: var(--element-box-size);
-    margin-right: -2px;
-    margin-bottom: -2px;
-    cursor: default; /* don't charge cursor into a bar when hovering over text */
-    user-select: none; /* don't select text upon clicking */
+  border: 2px solid #999;
+  height: var(--element-box-size);
+  width: var(--element-box-size);
+  margin-right: -2px;
+  margin-bottom: -2px;
+  cursor: default; /* don't charge cursor into a bar when hovering over text */
+  user-select: none; /* don't select text upon clicking */
 }
 
-
 .element-state0 {
-    background: #fff;
+  background: #fff;
 }
 
 .element-state1 {
-    background: rgb(122, 211, 126);
+  background: rgb(122, 211, 126);
 }
 
 .element-state2 {
-    background: rgb(238, 130, 130);
+  background: rgb(238, 130, 130);
 }
 
 .element-state3 {
-    background: rgb(129, 137, 241);
+  background: rgb(129, 137, 241);
 }
 
 .element-disabled {
-    background: rgb(235, 235, 235);
-    pointer-events: none; /* no hover on disabled elements */
+  background: rgb(235, 235, 235);
+  pointer-events: none; /* no hover on disabled elements */
 }
 
 .element:hover {
-    filter: brightness(85%);
+  filter: brightness(85%);
 }
 
 .elem_num {
-    float: left;
-    font-size: 11px;
-    position: absolute;
-    margin: 1px;
+  float: left;
+  font-size: 11px;
+  position: absolute;
+  margin: 1px;
 }
-  
+
 .elem_sym {
-    text-align: center;
-    font-size: calc(0.55*var(--element-box-size));
-    margin-top: calc(0.3*var(--element-box-size));
+  text-align: center;
+  font-size: calc(0.55 * var(--element-box-size));
+  margin-top: calc(0.3 * var(--element-box-size));
 }
 
 /* ----------------------------- */
 /* element locations in the grid */
 
 .element-2 {
-    grid-column-start: 18;
+  grid-column-start: 18;
 }
 
 .element-5 {
-    grid-column-start: 13;
+  grid-column-start: 13;
 }
 
 .element-13 {
-    grid-column-start: 13;
+  grid-column-start: 13;
 }
 
 /* Lanthanoids and Actonoids */
 
 .element-58 {
-    grid-column-start: 4;
+  grid-column-start: 4;
 }
 
 .element-90 {
-    grid-column-start: 4;
+  grid-column-start: 4;
 }
 
 .lanthanide {
-    margin-top: 18px;
+  margin-top: 18px;
 }
 
 /* ----------------------------- */
 
 .help_button {
-    margin: auto;
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
-    border: 2px solid #999;
-    height: calc(0.6*var(--element-box-size));
-    width: calc(0.6*var(--element-box-size));
-    border-radius: 50%;
-    /* margin-right: -1px; */
-    /* margin-top: -1px; */
-    /* text-align: center; */
-    cursor: default; /* don't charge cursor into a bar when hovering over text */
-    user-select: none; /* don't select text upon clicking */
-    justify-items: center;
-    align-items: center;
-    background: #fff;
+  margin: auto;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+  border: 2px solid #999;
+  height: calc(0.6 * var(--element-box-size));
+  width: calc(0.6 * var(--element-box-size));
+  border-radius: 50%;
+  /* margin-right: -1px; */
+  /* margin-top: -1px; */
+  /* text-align: center; */
+  cursor: default; /* don't charge cursor into a bar when hovering over text */
+  user-select: none; /* don't select text upon clicking */
+  justify-items: center;
+  align-items: center;
+  background: #fff;
 }
 
 .help_text {
-    text-align: center;
-    font-size: calc(0.45*var(--element-box-size));
-    margin-top: 1px;
+  text-align: center;
+  font-size: calc(0.45 * var(--element-box-size));
+  margin-top: 1px;
 }
 
 .help_button:hover {
-    filter: brightness(85%);
+  filter: brightness(85%);
 }
 
 @media screen and (max-width: 700px) {
-    :root {
-        --element-box-size: 30px;
-      }
+  :root {
+    --element-box-size: 30px;
   }
+}

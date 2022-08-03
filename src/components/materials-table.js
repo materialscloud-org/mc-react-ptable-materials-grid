@@ -1,22 +1,28 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Paper from '@mui/material/Paper';
-import { visuallyHidden } from '@mui/utils';
+import * as React from "react";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import Paper from "@mui/material/Paper";
+import { visuallyHidden } from "@mui/utils";
 
+const compounds_link =
+  "https://dev-www.materialscloud.org/mcloud/api/v2/discover/mc3d/compounds";
 
-const compounds_link = "https://dev-www.materialscloud.org/mcloud/api/v2/discover/mc3d/compounds";
-
-
-function createData(mc3d_id, formula, spacegroup_int, spacegroup_nr, tot_mag, abs_mag) {
+function createData(
+  mc3d_id,
+  formula,
+  spacegroup_int,
+  spacegroup_nr,
+  tot_mag,
+  abs_mag
+) {
   return {
     mc3d_id,
     formula,
@@ -45,7 +51,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === 'desc'
+  return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -66,46 +72,45 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'id',
+    id: "id",
     numeric: false,
     disablePadding: true,
-    label: 'MC3D-ID',
+    label: "MC3D-ID",
   },
   {
-    id: 'formula',
+    id: "formula",
     numeric: false,
     disablePadding: true,
-    label: 'Formula',
+    label: "Formula",
   },
   {
-    id: 'spg',
+    id: "spg",
     numeric: false,
     disablePadding: true,
-    label: 'Spacegroup int.',
+    label: "Spacegroup int.",
   },
   {
-    id: 'spgn',
+    id: "spgn",
     numeric: true,
     disablePadding: false,
-    label: 'Spacegroup nr.',
+    label: "Spacegroup nr.",
   },
   {
-    id: 'tm',
+    id: "tm",
     numeric: true,
     disablePadding: false,
-    label: 'Total magnetization',
+    label: "Total magnetization",
   },
   {
-    id: 'am',
+    id: "am",
     numeric: true,
     disablePadding: false,
-    label: 'Abs. magnetization',
+    label: "Abs. magnetization",
   },
 ];
 
 function EnhancedTableHead(props) {
-  const { order, orderBy, rowCount, onRequestSort } =
-    props;
+  const { order, orderBy, rowCount, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -116,19 +121,19 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align='center'
-            padding='normal'
+            align="center"
+            padding="normal"
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
+              direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </Box>
               ) : null}
             </TableSortLabel>
@@ -141,41 +146,38 @@ function EnhancedTableHead(props) {
 
 EnhancedTableHead.propTypes = {
   onRequestSort: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
 
-
 function EnhancedTable(props) {
-
   // populate rows with compounds
   var compounds = props.compounds;
   rows = [];
-  Object.keys(compounds).map((i)=>{
-    Object.keys(compounds[i]).map((j)=>{
-      var row = {...compounds[i][j], ...{formula: i}};
-      if (!('tm' in row)) {
-        row['tm'] = NaN;
+  Object.keys(compounds).map((i) => {
+    Object.keys(compounds[i]).map((j) => {
+      var row = { ...compounds[i][j], ...{ formula: i } };
+      if (!("tm" in row)) {
+        row["tm"] = NaN;
       }
-      if (!('am' in row)) {
-        row['am'] = NaN;
+      if (!("am" in row)) {
+        row["am"] = NaN;
       }
       rows.push(row);
-    })
+    });
   });
 
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('id');
+  const [order, setOrder] = React.useState("asc");
+  const [orderBy, setOrderBy] = React.useState("id");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
-
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -191,13 +193,13 @@ function EnhancedTable(props) {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+    <Box sx={{ width: "100%" }}>
+      <Paper sx={{ width: "100%", mb: 2 }}>
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
-            size='small'
+            size="small"
           >
             <EnhancedTableHead
               order={order}
@@ -211,18 +213,9 @@ function EnhancedTable(props) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-
                   return (
-                    <TableRow
-                      hover
-                      tabIndex={-1}
-                      key={row.mc3d_id}
-                    >
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        align="center"
-                      >
+                    <TableRow hover tabIndex={-1} key={row.mc3d_id}>
+                      <TableCell component="th" scope="row" align="center">
                         {row.id}
                       </TableCell>
                       <TableCell align="center">{row.formula}</TableCell>
@@ -260,40 +253,38 @@ function EnhancedTable(props) {
 }
 
 class MaterialsTable extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
       data: [],
-    };    
+    };
   }
 
   componentDidMount() {
-    fetch(compounds_link, { method: 'get' })
-    .then(res => res.json())
-    .then(
-      r => {
+    fetch(compounds_link, { method: "get" })
+      .then((res) => res.json())
+      .then((r) => {
         //console.log(r)
         this.setState({
           isLoaded: true,
           data: r.data.compounds,
-        }); 
+        });
       });
-  };
-  
-    render(){
-      const error = this.state.error;
-      let isLoaded = this.state.isLoaded;
-      if (error) {
-        return <div>Error: {error.message}</div>;
-      } else if (!isLoaded) {
-        return <div>Loading...</div>;
-      } else {
-        return (<EnhancedTable compounds={this.state.data}/>);
-      }
-    };
+  }
+
+  render() {
+    const error = this.state.error;
+    let isLoaded = this.state.isLoaded;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return <EnhancedTable compounds={this.state.data} />;
+    }
+  }
 }
 
 export default MaterialsTable;
