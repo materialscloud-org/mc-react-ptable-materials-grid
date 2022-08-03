@@ -1,10 +1,18 @@
+/* Variables */
+:root {
+    --element-box-size: 40px;
+  }
 
 .ptable_outer {
     /* width: 95%; */
     /* margin: 0 auto; */
-    margin-top: -4vw;
+    /*margin-top: -4vw;*/
     /* max-width: 1700px; */
-    transform: scale(0.8);
+    /* transform: scale(0.8); */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ptable {
@@ -15,9 +23,8 @@
 
 .element {
     border: 2px solid #999;
-    height: 5vw;
-    width: 5vw;
-    line-height: 1.0;
+    height: var(--element-box-size);
+    width: var(--element-box-size);
     margin-right: -2px;
     margin-bottom: -2px;
     cursor: default; /* don't charge cursor into a bar when hovering over text */
@@ -52,15 +59,15 @@
 
 .elem_num {
     float: left;
-    font-size: 1.2vw;
+    font-size: 11px;
     position: absolute;
     margin: 1px;
 }
   
 .elem_sym {
     text-align: center;
-    font-size: 2.5vw;
-    margin-top: 1.5vw;
+    font-size: calc(0.55*var(--element-box-size));
+    margin-top: calc(0.3*var(--element-box-size));
 }
 
 /* ----------------------------- */
@@ -89,7 +96,7 @@
 }
 
 .lanthanide {
-    margin-top: 2.5vw;
+    margin-top: 18px;
 }
 
 /* ----------------------------- */
@@ -99,9 +106,8 @@
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     border: 2px solid #999;
-    height: 3vw;
-    width: 3vw;
-    line-height: 1.0;
+    height: calc(0.6*var(--element-box-size));
+    width: calc(0.6*var(--element-box-size));
     border-radius: 50%;
     /* margin-right: -1px; */
     /* margin-top: -1px; */
@@ -115,10 +121,16 @@
 
 .help_text {
     text-align: center;
-    font-size: 2.0vw;
-    margin-top: 0.6vw;
+    font-size: calc(0.45*var(--element-box-size));
+    margin-top: 1px;
 }
 
 .help_button:hover {
     filter: brightness(85%);
 }
+
+@media screen and (max-width: 700px) {
+    :root {
+        --element-box-size: 30px;
+      }
+  }
