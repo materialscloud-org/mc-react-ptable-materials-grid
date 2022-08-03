@@ -1,0 +1,10 @@
+.MaterialDataGrid {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  max-width: 800px;
+  box-sizing: content-box;
+  margin: 0 auto;
+  margin-top: 20px;
+}

@@ -1,14 +1,14 @@
 import React from "react";
 
-import { elements } from "./data";
+import { element_symbols } from "./data";
 
-import "./ptable.css";
+import "./PTable.css";
 
 class ElementClickable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      symbol: elements[this.props.num],
+      symbol: element_symbols[this.props.num],
       link: "http://www.google.com",
     };
   }
@@ -37,7 +37,7 @@ class Element extends React.Component {
   }
 
   render() {
-    let symbol = elements[this.props.num];
+    let symbol = element_symbols[this.props.num];
     let e_class = `element element-${this.props.num}`;
     let on_click = null;
 
@@ -96,47 +96,5 @@ class PTable extends React.Component {
     );
   }
 }
-
-// class SelectionList extends React.Component {
-
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-
-//     return (
-//       <Table striped bordered hover>
-//         <thead>
-//           <tr>
-//             <th>#</th>
-//             <th>First Name</th>
-//             <th>Last Name</th>
-//             <th>Username</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr>
-//             <td>1</td>
-//             <td>Mark</td>
-//             <td>Otto</td>
-//             <td>@mdo</td>
-//           </tr>
-//           <tr>
-//             <td>2</td>
-//             <td>Jacob</td>
-//             <td>Thornton</td>
-//             <td>@fat</td>
-//           </tr>
-//           <tr>
-//             <td>3</td>
-//             <td colSpan={2}>Larry the Bird</td>
-//             <td>@twitter</td>
-//           </tr>
-//         </tbody>
-//       </Table>
-//     );
-//   }
-// }
 
 export default PTable;

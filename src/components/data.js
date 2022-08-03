@@ -1,4 +1,4 @@
-export const elements = [
+export const element_symbols = [
   "X",
   "H",
   "He",
