@@ -1,6 +1,6 @@
 import React from "react";
 
-import { element_symbols } from "./data";
+import { element_symbols } from "./ptable_data";
 
 import "./PTable.css";
 
@@ -79,19 +79,17 @@ class PTable extends React.Component {
 
   render() {
     return (
-      <div className="ptable_outer">
-        <div className="ptable">
-          {this.makeElements(1, 57)}
-          {this.makeElements(72, 89)}
-          {this.makeElements(104, 118)}
-          {this.makeElements(58, 71)}
-          {this.makeElements(90, 103)}
-          {
-            <div className="help_button">
-              <div className="help_text">?</div>
-            </div>
-          }
-        </div>
+      <div className="ptable">
+        {this.makeElements(1, 57)}
+        {this.makeElements(72, 89)}
+        {this.makeElements(104, 118)}
+        {this.makeElements(58, 71)}
+        {this.makeElements(90, 103)}
+        {
+          <div className="help_button">
+            <div className="help_text">?</div>
+          </div>
+        }
       </div>
     );
   }
