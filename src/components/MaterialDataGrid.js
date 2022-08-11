@@ -15,6 +15,21 @@ function floatFormatter(params) {
   return params.value.toFixed(2);
 }
 
+function formulaCellRenderer(params) {
+  // split formula into array of elements and numbers
+  let f_split = params.value.split(/(\d+)/);
+  return (
+    <span>
+      {f_split.map((v, index) => {
+        if (v.match(/\d+/)) {
+          return <sub key={index}>{v}</sub>;
+        }
+        return v;
+      })}
+    </span>
+  );
+}
+
 function getColumnDefs() {
   return [
     {
@@ -37,6 +52,7 @@ function getColumnDefs() {
       field: "formula",
       headerName: "Formula",
       width: 180,
+      cellRenderer: formulaCellRenderer,
     },
     {
       field: "n_elem",
