@@ -3,6 +3,18 @@
   --element-box-size: 40px;
 }
 
+.ptable_outer {
+  /* width: 95%; */
+  /* margin: 0 auto; */
+  /*margin-top: -4vw;*/
+  /* max-width: 1700px; */
+  /* transform: scale(0.8); */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .ptable {
   display: grid;
   grid-template-columns: repeat(17, auto) 1fr;

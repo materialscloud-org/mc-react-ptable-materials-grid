@@ -1,0 +1,57 @@
+/* The container <div> - needed to position the dropdown content */
+.column-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Button */
+.column-dropdown-btn {
+  background-color: #f8f8f8;
+  color: #000000;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #babfc7;
+  cursor: pointer;
+  margin-bottom: 3px;
+  margin-top: 2px;
+}
+
+/* Dropdown button on hover & focus */
+.column-dropdown-btn:hover {
+  background-color: #dbdbdb;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.column-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  line-height: 1.8;
+  font-size: 12px;
+}
+
+.column-dropdown-content ul {
+  padding: 2px;
+  margin: 0;
+  /* border: 1px solid #ccc; */
+  border-top: none;
+  list-style: none;
+}
+
+.column-dropdown-content li {
+  float: left;
+}
+
+/* Change color of dropdown links on hover */
+.column-dropdown-content li:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
+}
