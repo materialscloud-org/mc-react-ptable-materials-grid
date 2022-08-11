@@ -40,3 +40,9 @@
 .checkbox-menu li.active label:focus {
   background-color: #b8b8ff;
 }
+
+/* override the 50px min height */
+.ag-center-cols-clipper,
+.ag-center-cols-container {
+  min-height: 300px !important;
+}

@@ -143,9 +143,11 @@ class MaterialDataGrid extends React.Component {
   render() {
     const gridOptions = {
       pagination: true,
+      paginationPageSize: 20,
       suppressMenuHide: true,
       enableCellTextSelection: true,
       ensureDomOrder: true,
+      domLayout: "autoHeight",
     };
     return (
       <div>
@@ -155,7 +157,7 @@ class MaterialDataGrid extends React.Component {
             colDefs={getColumnDefs().slice(1)}
           />
         </div>
-        <div className="ag-theme-alpine" style={{ width: 960, height: 800 }}>
+        <div className="ag-theme-alpine" style={{ width: 960 }}>
           <AgGridReact
             columnDefs={this.state.columnDefs}
             defaultColDef={defaultColDef}
