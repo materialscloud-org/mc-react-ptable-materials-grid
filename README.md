@@ -1,3 +1,9 @@
+# React periodic table and materials' grid
+
+A [React](https://reactjs.org/) component for filtering and selecting materials, consisting of an integrated periodic table and a data grid.
+
+Built with [ag-grid](https://www.ag-grid.com/react-data-grid/).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
