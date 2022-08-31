@@ -105,11 +105,6 @@ class PTable extends React.Component {
           {this.makeElements(104, 118)}
           {this.makeElements(58, 71)}
           {this.makeElements(90, 103)}
-          {
-            <div className="help_button">
-              <div className="help_text">?</div>
-            </div>
-          }
         </div>
       </div>
     );
