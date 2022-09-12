@@ -1,4 +1,4 @@
-# React periodic table and materials' grid
+# React periodic table and materials grid
 
 A [React](https://reactjs.org/) component for filtering and selecting materials, consisting of an integrated periodic table and a data grid.
 

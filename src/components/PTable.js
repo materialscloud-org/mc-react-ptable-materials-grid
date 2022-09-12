@@ -4,26 +4,6 @@ import { element_symbols } from "./ptable_data";
 
 import "./PTable.css";
 
-/*
-class ElementClickable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      symbol: element_symbols[this.props.num],
-      link: "http://www.google.com",
-    };
-  }
-
-  render() {
-    return (
-      <a className="element" href={this.state.link}>
-        {this.state.symbol}
-      </a>
-    );
-  }
-}
-*/
-
 class Element extends React.Component {
   // state.selection:
   // 0 - deselected

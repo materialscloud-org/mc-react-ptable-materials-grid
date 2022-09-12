@@ -8,6 +8,19 @@ import "./MaterialDataGrid.css";
 
 import ColumnSelector from "./ColumnSelector";
 
+function idCellRenderer(params) {
+  return (
+    <a
+      href={"https://www.materialscloud.org"}
+      target={"_blank"}
+      rel={"noreferrer"}
+      style={{ textDecoration: "none", color: "mediumblue" }}
+    >
+      {params.value}
+    </a>
+  );
+}
+
 function floatFormatter(params) {
   if (params.value === null) {
     return "-";
@@ -30,67 +43,8 @@ function formulaCellRenderer(params) {
   );
 }
 
-function getColumnDefs() {
-  return [
-    {
-      field: "id",
-      headerName: "ID",
-      pinned: "left",
-      cellRenderer: function (params) {
-        return (
-          <a
-            href={"https://www.materialscloud.org"}
-            target={"_blank"}
-            style={{ textDecoration: "none", color: "mediumblue" }}
-          >
-            {params.value}
-          </a>
-        );
-      },
-    },
-    {
-      field: "formula",
-      headerName: "Formula",
-      width: 180,
-      cellRenderer: formulaCellRenderer,
-    },
-    {
-      field: "n_elem",
-      headerName: "Num. of elements",
-      hide: true,
-      filter: "agNumberColumnFilter",
-      type: "numericColumn",
-    },
-    {
-      field: "spg_int",
-      headerName: "Spacegroup int.",
-    },
-    {
-      field: "spg_num",
-      headerName: "Spacegroup nr.",
-      filter: "agNumberColumnFilter",
-      type: "numericColumn",
-    },
-    {
-      field: "tot_mag",
-      headerName: "Total magn.",
-      filter: "agNumberColumnFilter",
-      type: "numericColumn",
-      valueFormatter: floatFormatter,
-    },
-    {
-      field: "abs_mag",
-      headerName: "Abs. magn.",
-      filter: "agNumberColumnFilter",
-      type: "numericColumn",
-      valueFormatter: floatFormatter,
-    },
-  ];
-}
-
 const defaultColDef = {
   width: 150,
-  filter: "agTextColumnFilter",
   sortable: true,
   //resizable: true,
 };
@@ -99,7 +53,7 @@ class MaterialDataGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      columnDefs: getColumnDefs(),
+      columnDefs: this.getColumnDefs(),
     };
   }
 
@@ -116,8 +70,44 @@ class MaterialDataGrid extends React.Component {
     this.gridApi.onFilterChanged();
   };
 
+  getColumnDefs() {
+    // process the input column array to be compatible with ag-grid
+    return this.props.columns.map((col) => {
+      // clone input column
+      let formatted_col = structuredClone(col);
+
+      // convert colType to ag-grid related entries
+      delete formatted_col["colType"];
+      if (col["colType"] === "text") {
+        Object.assign(formatted_col, {
+          filter: "agTextColumnFilter",
+        });
+      } else if (col["colType"] === "integer") {
+        Object.assign(formatted_col, {
+          type: "numericColumn",
+          filter: "agNumberColumnFilter",
+        });
+      } else if (col["colType"] === "float") {
+        Object.assign(formatted_col, {
+          type: "numericColumn",
+          filter: "agNumberColumnFilter",
+          valueFormatter: floatFormatter,
+        });
+      }
+
+      if (col["field"] === "id") {
+        formatted_col["pinned"] = "left";
+        formatted_col["cellRenderer"] = idCellRenderer;
+      }
+      if (col["field"] === "formula") {
+        formatted_col["cellRenderer"] = formulaCellRenderer;
+      }
+      return formatted_col;
+    });
+  }
+
   handleColumnToggle = (e) => {
-    const columnDefs = getColumnDefs();
+    const columnDefs = this.getColumnDefs();
     columnDefs.forEach(function (colDef) {
       colDef.hide = false;
       if (colDef.field in e) {
@@ -138,7 +128,7 @@ class MaterialDataGrid extends React.Component {
     if (node.data) {
       // option 1: check if formula and filter elements match exactly
       let len_match =
-        node.data.elem_array.length == this.props.ptable_filter.length;
+        node.data.elem_array.length === this.props.ptable_filter.length;
       let incl = node.data.elem_array.every((e) =>
         this.props.ptable_filter.includes(e)
       );
@@ -170,7 +160,7 @@ class MaterialDataGrid extends React.Component {
         <div style={{ textAlign: "right" }}>
           <ColumnSelector
             onColumnToggle={this.handleColumnToggle}
-            colDefs={getColumnDefs().slice(1)}
+            colDefs={this.getColumnDefs().slice(1)}
           />
         </div>
         <div className="ag-theme-alpine" style={{ width: 960 }}>
