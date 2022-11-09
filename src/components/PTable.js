@@ -39,7 +39,7 @@ class Element extends React.Component {
       e_class += ` element-state${this.state.selection}`;
     }
 
-    if (this.props.num >= 58 && this.props.num <= 71) {
+    if (this.props.num >= 57 && this.props.num <= 71) {
       e_class += " lanthanide";
     }
 
@@ -61,7 +61,7 @@ class PTable extends React.Component {
     let items = [];
     for (let i = start; i <= end; i++) {
       var disabled = false;
-      if (i === 2 || i > 86) {
+      if (i > 86) {
         disabled = true;
       }
       items.push(
@@ -80,11 +80,11 @@ class PTable extends React.Component {
     return (
       <div className="ptable_outer">
         <div className="ptable">
-          {this.makeElements(1, 57)}
-          {this.makeElements(72, 89)}
+          {this.makeElements(1, 56)}
+          {this.makeElements(72, 88)}
           {this.makeElements(104, 118)}
-          {this.makeElements(58, 71)}
-          {this.makeElements(90, 103)}
+          {this.makeElements(57, 71)}
+          {this.makeElements(89, 103)}
         </div>
       </div>
     );

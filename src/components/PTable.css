@@ -1,6 +1,6 @@
 /* Variables */
 :root {
-  --element-box-size: 40px;
+  --element-box-size: 36px;
 }
 
 .ptable_outer {
@@ -22,7 +22,6 @@
 }
 
 .element {
-  /* border: 2px solid #999; */
   height: var(--element-box-size);
   width: var(--element-box-size);
   margin: 1px;
@@ -30,7 +29,8 @@
   /* margin-bottom: -2px; */
   user-select: none; /* don't select text upon clicking */
   position: relative;
-  border-radius: 20%;
+  border: 1px solid #999;
+  border-radius: 6px;
   cursor: pointer;
   /*cursor: default; /* don't charge cursor into a bar when hovering over text */
   display: flex;
@@ -95,16 +95,26 @@
 
 /* Lanthanoids and Actonoids */
 
-.element-58 {
-  grid-column-start: 4;
+.element-57 {
+  grid-column-start: 3;
 }
 
-.element-90 {
-  grid-column-start: 4;
+.element-89 {
+  grid-column-start: 3;
 }
 
 .lanthanide {
   margin-top: 14px;
+}
+
+/* push 72 and 104 forward to make a hole in the La & Ac spot */
+
+.element-72 {
+  grid-column-start: 4;
+}
+
+.element-104 {
+  grid-column-start: 4;
 }
 
 /* ----------------------------- */
