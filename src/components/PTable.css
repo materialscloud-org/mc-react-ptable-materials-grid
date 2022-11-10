@@ -118,6 +118,19 @@
 }
 
 /* ----------------------------- */
+/* Selection mode */
+
+.selection_mode {
+  grid-column: 5 / span 6;
+  grid-row: 1 / span 2;
+  width: calc(9 * var(--element-box-size) + 8);
+  height: calc(2 * var(--element-box-size) + 1);
+  /* background: rgb(238, 3, 3); */
+  border: 1px solid #999;
+  border-radius: 6px;
+}
+
+/* ----------------------------- */
 
 .help_button {
   margin: auto;

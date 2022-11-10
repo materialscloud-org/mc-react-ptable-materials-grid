@@ -9,8 +9,13 @@ class MaterialSelector extends React.Component {
     super(props);
     this.state = {
       rows: [],
-      ptable_filter: [],
+      ptableFilter: { mode: "exact", elements: {} },
     };
+    /* ptableFilter:
+      mode - "exact", "include"
+      elements - {Ag: num_clicked} (e.g. 1 - one click, 2 - two clicks)
+    */
+
     this.handlePTableChange = this.handlePTableChange.bind(this);
   }
 
@@ -23,32 +28,55 @@ class MaterialSelector extends React.Component {
   }
 
   handlePTableChange(filter_change) {
-    /* filter_change = { element: new_state } */
+    // filter_change = {mode: new_mode, element: clicked_element}
 
-    var new_filter = this.state.ptable_filter.slice(0);
-    Object.keys(filter_change).forEach((i) => {
-      if (filter_change[i] === 1 && !new_filter.includes(i)) {
-        new_filter.push(i);
-      }
-      if (filter_change[i] !== 1 && new_filter.includes(i)) {
-        new_filter.splice(new_filter.indexOf(i), 1);
-      }
-    });
+    // console.log(filter_change);
 
-    if (new_filter !== this.state.ptable_filter) {
-      this.setState({ ptable_filter: new_filter });
+    let filter_mode = this.state.ptableFilter["mode"];
+
+    let new_filter = structuredClone(this.state.ptableFilter);
+    if ("mode" in filter_change) {
+      new_filter["mode"] = filter_change["mode"];
+      filter_mode = filter_change["mode"];
+      // if filter mode changes from "include" to "exact",
+      // deselect all the excluded elements
+      if (filter_change["mode"] == "exact") {
+        for (const [el, sel] of Object.entries(new_filter["elements"])) {
+          if (sel > 1) delete new_filter["elements"][el];
+        }
+      }
     }
+
+    if ("element" in filter_change) {
+      let el = filter_change["element"];
+      if (!(filter_change["element"] in new_filter["elements"])) {
+        new_filter["elements"][el] = 1;
+      } else {
+        new_filter["elements"][el] += 1;
+      }
+      // if selection crosses the number of states, deselect
+      if (filter_mode == "exact") {
+        if (new_filter["elements"][el] == 2) delete new_filter["elements"][el];
+      } else if (filter_mode == "include") {
+        if (new_filter["elements"][el] == 3) delete new_filter["elements"][el];
+      }
+    }
+
+    this.setState({ ptableFilter: new_filter });
   }
 
   render() {
     return (
       <div>
-        <PTable onSelectionChange={this.handlePTableChange} />
+        <PTable
+          onSelectionChange={this.handlePTableChange}
+          filter={this.state.ptableFilter}
+        />
         <div style={{ marginTop: "5px" }}></div>
         <MaterialDataGrid
           columns={this.props.columns}
           rows={this.state.rows}
-          ptable_filter={this.state.ptable_filter}
+          ptable_filter={this.state.ptableFilter}
         />
       </div>
     );

@@ -121,26 +121,37 @@ class MaterialDataGrid extends React.Component {
   // External filter handling
 
   isExternalFilterPresent = () => {
-    return this.props.ptable_filter.length > 0;
+    return Object.keys(this.props.ptable_filter["elements"]).length > 0;
   };
 
   doesExternalFilterPass = (node) => {
     if (node.data) {
-      // option 1: check if formula and filter elements match exactly
-      let len_match =
-        node.data.elem_array.length === this.props.ptable_filter.length;
-      let incl = node.data.elem_array.every((e) =>
-        this.props.ptable_filter.includes(e)
-      );
-      return len_match && incl;
-      // option 2: check if all formula elements are in the filter
-      //return node.data.elem_array.every((e) =>
-      //  this.props.ptable_filter.includes(e)
-      //);
-      // option 3: check if all filter elements are in the formula
-      //return this.props.ptable_filter.every((e) =>
-      //  node.data.elem_array.includes(e)
-      //);
+      if (this.props.ptable_filter["mode"] == "exact") {
+        let selectedElements = Object.keys(
+          this.props.ptable_filter["elements"]
+        );
+        let len_match = node.data.elem_array.length === selectedElements.length;
+        let incl = node.data.elem_array.every((e) =>
+          selectedElements.includes(e)
+        );
+        return len_match && incl;
+      }
+
+      if (this.props.ptable_filter["mode"] == "include") {
+        let include = [];
+        let exclude = [];
+        for (const [el, sel] of Object.entries(
+          this.props.ptable_filter["elements"]
+        )) {
+          if (sel == 1) include.push(el);
+          if (sel == 2) exclude.push(el);
+        }
+        // every element specified in "include" needs to be present
+        let incl = include.every((e) => node.data.elem_array.includes(e));
+        // none of the elem_array elements can be in the excluded list
+        let excl = node.data.elem_array.every((e) => !exclude.includes(e));
+        return incl && excl;
+      }
     }
     return true;
   };

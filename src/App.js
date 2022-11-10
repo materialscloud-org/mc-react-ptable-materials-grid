@@ -1,6 +1,8 @@
 import "./App.css";
 import MaterialSelector from "./components/MaterialSelector";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 /* The MaterialsSelector needs two inputs:
  1) column definitions
  2) async function that loads data
