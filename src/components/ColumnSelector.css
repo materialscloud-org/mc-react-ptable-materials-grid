@@ -28,19 +28,33 @@
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  /* min-width: 160px; */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   line-height: 1.8;
   font-size: 12px;
+  padding-bottom: 5px;
 }
 
 .column-dropdown-content ul {
-  padding: 2px;
-  margin: 0;
+  padding: 5px;
+  margin: 5px;
   /* border: 1px solid #ccc; */
   border-top: none;
   list-style: none;
+}
+.column-dropdown-content label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.column-dropdown-content input {
+  vertical-align: middle;
+}
+
+.column-dropdown-content span {
+  vertical-align: middle;
+  padding-left: 10px;
 }
 
 .column-dropdown-content li {

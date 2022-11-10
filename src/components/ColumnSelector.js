@@ -55,7 +55,7 @@ class ColumnSelector extends React.Component {
                       checked={this.state.ticks[item.field]}
                       onChange={this.handleToggle}
                     />
-                    {item.headerName}
+                    <span>{item.headerName}</span>
                   </label>
                 </li>
               ))}
