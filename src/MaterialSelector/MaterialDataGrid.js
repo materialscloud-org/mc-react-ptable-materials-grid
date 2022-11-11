@@ -167,7 +167,7 @@ class MaterialDataGrid extends React.Component {
       domLayout: "autoHeight",
     };
     return (
-      <div style={{ width: 960 }}>
+      <div>
         <div style={{ textAlign: "right" }}>
           <ColumnSelector
             onColumnToggle={this.handleColumnToggle}

@@ -67,7 +67,7 @@ class MaterialSelector extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ width: 940 }}>
         <PTable
           onSelectionChange={this.handlePTableChange}
           filter={this.state.ptableFilter}
