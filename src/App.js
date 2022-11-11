@@ -1,7 +1,5 @@
 import "./App.css";
-import MaterialSelector from "./components/MaterialSelector";
-
-import "bootstrap/dist/css/bootstrap.min.css";
+import MaterialSelector from "./MaterialSelector";
 
 /* The MaterialsSelector needs two inputs:
  1) column definitions
@@ -80,6 +78,7 @@ function formatRows(compounds) {
         abs_mag: "am" in comp ? comp["am"] : null,
         n_elem: elemArr.length,
         elem_array: elemArr,
+        href: "https://www.materialscloud.org",
       };
       rows.push(row);
     });

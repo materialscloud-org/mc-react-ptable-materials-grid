@@ -11,7 +11,7 @@ import ColumnSelector from "./ColumnSelector";
 function idCellRenderer(params) {
   return (
     <a
-      href={"https://www.materialscloud.org"}
+      href={params.data.href}
       target={"_blank"}
       rel={"noreferrer"}
       style={{ textDecoration: "none", color: "mediumblue" }}
@@ -167,14 +167,14 @@ class MaterialDataGrid extends React.Component {
       domLayout: "autoHeight",
     };
     return (
-      <div>
+      <div style={{ width: 960 }}>
         <div style={{ textAlign: "right" }}>
           <ColumnSelector
             onColumnToggle={this.handleColumnToggle}
             colDefs={this.getColumnDefs().slice(1)}
           />
         </div>
-        <div className="ag-theme-alpine" style={{ width: 960 }}>
+        <div className="ag-theme-alpine">
           <AgGridReact
             columnDefs={this.state.columnDefs}
             defaultColDef={defaultColDef}

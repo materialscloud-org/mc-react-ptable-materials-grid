@@ -9,10 +9,10 @@
   /*margin-top: -4vw;*/
   /* max-width: 1700px; */
   /* transform: scale(0.8); */
-  text-align: center;
+  /* text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .ptable {
@@ -21,7 +21,7 @@
   grid-template-rows: repeat(10, auto) 1fr;
 }
 
-.element {
+.pt_element {
   height: var(--element-box-size);
   width: var(--element-box-size);
   margin: 1px;
@@ -39,28 +39,28 @@
   align-items: center;
 }
 
-.element-state0 {
+.pt_element-state0 {
   background: rgb(168, 220, 250);
 }
 
-.element-state1 {
+.pt_element-state1 {
   background: rgb(122, 211, 126);
 }
 
-.element-state2 {
+.pt_element-state2 {
   background: rgb(238, 130, 130);
 }
 
-.element-state3 {
+.pt_element-state3 {
   background: rgb(129, 137, 241);
 }
 
-.element-disabled {
+.pt_element-disabled {
   background: rgb(226, 226, 226);
   pointer-events: none; /* no hover on disabled elements */
 }
 
-.element:hover {
+.pt_element:hover {
   filter: brightness(85%);
   transform: scale(1.2);
   z-index: 10;
@@ -81,25 +81,25 @@
 /* ----------------------------- */
 /* element locations in the grid */
 
-.element-2 {
+.pt_element-2 {
   grid-column-start: 18;
 }
 
-.element-5 {
+.pt_element-5 {
   grid-column-start: 13;
 }
 
-.element-13 {
+.pt_element-13 {
   grid-column-start: 13;
 }
 
 /* Lanthanoids and Actonoids */
 
-.element-57 {
+.pt_element-57 {
   grid-column-start: 3;
 }
 
-.element-89 {
+.pt_element-89 {
   grid-column-start: 3;
 }
 
@@ -109,11 +109,11 @@
 
 /* push 72 and 104 forward to make a hole in the La & Ac spot */
 
-.element-72 {
+.pt_element-72 {
   grid-column-start: 4;
 }
 
-.element-104 {
+.pt_element-104 {
   grid-column-start: 4;
 }
 
@@ -128,6 +128,10 @@
   /* background: rgb(238, 3, 3); */
   border: 1px solid #999;
   border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ----------------------------- */

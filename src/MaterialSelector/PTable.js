@@ -27,16 +27,16 @@ class Element extends React.Component {
   }
 
   render() {
-    let e_class = `element element-${this.props.num}`;
+    let e_class = `pt_element pt_element-${this.props.num}`;
 
     let selection = 0;
     if (this.symbol in this.props.filter["elements"])
       selection = this.props.filter["elements"][this.symbol];
 
     if (this.props.disabled) {
-      e_class += " element-disabled";
+      e_class += " pt_element-disabled";
     } else {
-      e_class += ` element-state${selection}`;
+      e_class += ` pt_element-state${selection}`;
     }
 
     if (this.props.num >= 57 && this.props.num <= 71) {
@@ -58,7 +58,6 @@ class SelectionMode extends React.Component {
   }
   // this.props.onSelectionChange({ mode: e.currentTarget.checked })
   render() {
-    let mode = this.props.filter["mode"];
     return (
       <div className="selection_mode">
         <div style={{ marginBottom: "6px" }}>Filtering mode:</div>
