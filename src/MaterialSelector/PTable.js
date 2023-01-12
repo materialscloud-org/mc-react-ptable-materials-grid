@@ -60,8 +60,18 @@ class SelectionMode extends React.Component {
   render() {
     return (
       <div className="selection_mode">
-        <div style={{ marginBottom: "6px" }}>Filtering mode:</div>
-        <ToggleButtonGroup
+        <div className="selection_mode_boxes">
+          <div style={{ marginBottom: "0px" }}>Filtering mode:</div>
+          <label className="selection_mode_control">
+            <input type="radio" name="sel_mode" checked />
+            Exact
+          </label>
+          <label className="selection_mode_control">
+            <input type="radio" name="sel_mode" />
+            Include/exclude
+          </label>
+        </div>
+        {/* <ToggleButtonGroup
           type="radio"
           name="options"
           defaultValue={"exact"}
@@ -71,6 +81,7 @@ class SelectionMode extends React.Component {
             style={{ fontSize: "14px" }}
             id="tgl-btn-1"
             value={"exact"}
+            variant="primary"
           >
             Exact
           </ToggleButton>
@@ -78,10 +89,11 @@ class SelectionMode extends React.Component {
             style={{ fontSize: "14px" }}
             id="tgl-btn-2"
             value={"include"}
+            variant="primary"
           >
-            Incl./excl.
+            Include/exclude
           </ToggleButton>
-        </ToggleButtonGroup>
+        </ToggleButtonGroup> */}
       </div>
     );
   }
