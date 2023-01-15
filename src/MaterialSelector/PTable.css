@@ -31,7 +31,7 @@
   position: relative;
   border: 1px solid #999;
   border-radius: 6px;
-  cursor: pointer;
+  /* cursor: pointer; */
   /*cursor: default; /* don't charge cursor into a bar when hovering over text */
   display: flex;
   flex-direction: column; /* make main axis vertical */
@@ -61,7 +61,11 @@
   pointer-events: none; /* no hover on disabled elements */
 }
 
-.pt_element:hover {
+.pt_element.nondoc {
+  cursor: pointer;
+}
+
+.pt_element.nondoc:hover {
   filter: brightness(85%);
   transform: scale(1.2);
   z-index: 10;
@@ -118,6 +122,10 @@
   grid-column-start: 4;
 }
 
+.doc-elements {
+  display: flex;
+}
+
 /* ----------------------------- */
 /* Selection mode */
 
@@ -139,6 +147,7 @@
 }
 
 .selection_mode_inner {
+  font-size: calc(0.4 * var(--element-box-size));
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -146,7 +155,7 @@
 }
 
 .selection_mode_control {
-  font-size: calc(0.4 * var(--element-box-size));
+  /* font-size: calc(0.4 * var(--element-box-size)); */
   line-height: 1.4;
   margin-left: 15px;
 }
@@ -158,27 +167,25 @@
 /* ----------------------------- */
 
 .help_button {
-  margin: auto;
-  grid-column: 2 / span 1;
-  grid-row: 1 / span 1;
+  position: absolute;
+  top: 6px;
+  right: 6px;
   border: 2px solid #999;
+  border-radius: 50%;
   height: calc(0.6 * var(--element-box-size));
   width: calc(0.6 * var(--element-box-size));
-  border-radius: 50%;
-  /* margin-right: -1px; */
-  /* margin-top: -1px; */
-  /* text-align: center; */
+  line-height: calc(0.6 * var(--element-box-size));
   cursor: default; /* don't charge cursor into a bar when hovering over text */
   user-select: none; /* don't select text upon clicking */
   justify-items: center;
   align-items: center;
-  background: #fff;
-}
-
-.help_text {
+  background: rgb(236, 236, 236);
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
   font-size: calc(0.45 * var(--element-box-size));
-  margin-top: 1px;
 }
 
 .help_button:hover {
