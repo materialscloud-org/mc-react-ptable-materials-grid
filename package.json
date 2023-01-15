@@ -1,6 +1,6 @@
 {
   "name": "react-ptable-materials-grid",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "author": "Kristjan Eimre <kristjan.eimre@epfl.ch>",
   "main": "dist/index.js",
   "module": "dist/index.js",
