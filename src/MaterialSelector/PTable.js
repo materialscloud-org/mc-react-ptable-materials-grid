@@ -59,41 +59,23 @@ class SelectionMode extends React.Component {
   // this.props.onSelectionChange({ mode: e.currentTarget.checked })
   render() {
     return (
-      <div className="selection_mode">
-        <div className="selection_mode_boxes">
+      <div className="selection_mode_outer">
+        <div
+          className="selection_mode_inner"
+          onChange={(e) =>
+            this.props.onSelectionChange({ mode: e.target.value })
+          }
+        >
           <div style={{ marginBottom: "0px" }}>Filtering mode:</div>
           <label className="selection_mode_control">
-            <input type="radio" name="sel_mode" checked />
+            <input type="radio" name="sel_mode" value="exact" defaultChecked />
             Exact
           </label>
           <label className="selection_mode_control">
-            <input type="radio" name="sel_mode" />
+            <input type="radio" name="sel_mode" value="include" />
             Include/exclude
           </label>
         </div>
-        {/* <ToggleButtonGroup
-          type="radio"
-          name="options"
-          defaultValue={"exact"}
-          onChange={(e) => this.props.onSelectionChange({ mode: e })}
-        >
-          <ToggleButton
-            style={{ fontSize: "14px" }}
-            id="tgl-btn-1"
-            value={"exact"}
-            variant="primary"
-          >
-            Exact
-          </ToggleButton>
-          <ToggleButton
-            style={{ fontSize: "14px" }}
-            id="tgl-btn-2"
-            value={"include"}
-            variant="primary"
-          >
-            Include/exclude
-          </ToggleButton>
-        </ToggleButtonGroup> */}
       </div>
     );
   }

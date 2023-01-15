@@ -121,7 +121,8 @@
 /* ----------------------------- */
 /* Selection mode */
 
-.selection_mode {
+.selection_mode_outer {
+  position: relative;
   grid-column: 5 / span 6;
   grid-row: 1 / span 2;
   width: calc(9 * var(--element-box-size) + 8);
@@ -137,7 +138,7 @@
   /* padding-left: 20px; */
 }
 
-.selection_mode_boxes {
+.selection_mode_inner {
   display: flex;
   flex-direction: column;
   align-items: start;
