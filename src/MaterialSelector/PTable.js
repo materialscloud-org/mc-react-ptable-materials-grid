@@ -25,7 +25,7 @@ class Element extends React.Component {
   }
 
   handleOnClick() {
-    if (this.props.disabled) return;
+    if (this.props.disabled && this.props.selection == 0) return;
     if (this.props.onSelectionChange == null) return;
     this.props.onSelectionChange({ element: this.symbol });
   }
@@ -33,7 +33,7 @@ class Element extends React.Component {
   render() {
     let e_class = `pt_element pt_element-${this.props.num}`;
 
-    if (this.props.disabled) {
+    if (this.props.disabled && this.props.selection == 0) {
       e_class += " pt_element-disabled";
     } else {
       e_class += ` pt_element-state${this.props.selection}`;
@@ -142,6 +142,38 @@ class SelectionMode extends React.Component {
   }
 }
 
+// ------------------------------------------------------------
+// Functions to determine what elements to enable/disable
+function fitsFilter(elem_array, include, exclude) {
+  // every element specified in "include" needs to be present
+  let incl = include.every((e) => elem_array.includes(e));
+  // none of the elem_array elements can be in the excluded list
+  let excl = true;
+  if (exclude.length != 0) excl = elem_array.every((e) => !exclude.has(e));
+  return incl && excl;
+}
+
+function enabledElements(rows, filter) {
+  var enabledElem = new Set();
+
+  // for filter["mode"] == "exact"), only include is used
+  let include = [];
+  let exclude = new Set();
+  for (const [el, sel] of Object.entries(filter["elements"])) {
+    if (sel == 1) include.push(el);
+    if (sel == 2) exclude.add(el);
+  }
+
+  rows.forEach((row) => {
+    if (fitsFilter(row.elem_array, include, exclude)) {
+      enabledElem = new Set([...enabledElem, ...row.elem_array]);
+    }
+    // enabledElem = new Set([...enabledElem, ...row.elem_array]);
+  });
+  return enabledElem;
+}
+// ------------------------------------------------------------
+
 class PTable extends React.Component {
   constructor(props) {
     super(props);
@@ -150,10 +182,6 @@ class PTable extends React.Component {
   makeElements = (start, end) => {
     let items = [];
     for (let i = start; i <= end; i++) {
-      var disabled = false;
-      if (i > 86) {
-        disabled = true;
-      }
       let symbol = element_symbols[i];
       let selection = 0;
       if (symbol in this.props.filter["elements"])
@@ -163,7 +191,7 @@ class PTable extends React.Component {
         <Element
           key={i}
           num={i}
-          disabled={disabled}
+          disabled={!this.enabledElems.has(symbol)}
           onSelectionChange={this.props.onSelectionChange}
           selection={selection}
           doc={false}
@@ -174,6 +202,8 @@ class PTable extends React.Component {
   };
 
   render() {
+    this.enabledElems = enabledElements(this.props.rows, this.props.filter);
+
     return (
       <div className="ptable_outer">
         <div className="ptable">

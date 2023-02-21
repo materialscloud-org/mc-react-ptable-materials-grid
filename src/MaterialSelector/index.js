@@ -71,6 +71,7 @@ class MaterialSelector extends React.Component {
         <PTable
           onSelectionChange={this.handlePTableChange}
           filter={this.state.ptableFilter}
+          rows={this.state.rows}
         />
         <div style={{ marginTop: "5px" }}></div>
         <MaterialDataGrid
