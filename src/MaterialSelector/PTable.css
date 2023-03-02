@@ -183,13 +183,13 @@
 
 /* ----------------------------- */
 
-@media screen and (max-width: 940px) {
+@media screen and (max-width: 800px) {
   :root {
     --element-box-size: 34px;
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 700px) {
   :root {
     --element-box-size: 28px;
   }
@@ -201,7 +201,7 @@
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 570px) {
   :root {
     --element-box-size: 22px;
   }

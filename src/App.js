@@ -43,6 +43,7 @@ const columns = [
     field: "spg_num",
     headerName: "Spacegroup nr.",
     colType: "integer",
+    hide: true,
   },
   {
     field: "tot_mag",
