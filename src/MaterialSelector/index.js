@@ -9,7 +9,7 @@ class MaterialSelector extends React.Component {
     super(props);
     this.state = {
       rows: [],
-      ptableFilter: { mode: "exact", elements: {} },
+      ptableFilter: { mode: "include", elements: {} },
     };
     /* ptableFilter:
       mode - "exact", "include"

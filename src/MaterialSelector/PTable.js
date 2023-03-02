@@ -1,17 +1,15 @@
 import React from "react";
 
-import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
-import ToggleButton from "react-bootstrap/ToggleButton";
-
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-
 import Popover from "react-bootstrap/Popover";
 
-import { element_symbols } from "./ptable_data";
+import HelpButton from "./HelpButton";
+
+import { elementsInfo, elementClassColors } from "./ptable_data";
+import { RGB_Log_Blend } from "./utils";
 
 import "./PTable.css";
 
-class Element extends React.Component {
+export class Element extends React.Component {
   // state.selection:
   // 0 - deselected
   // 1 - include
@@ -21,7 +19,9 @@ class Element extends React.Component {
     super(props);
 
     this.handleOnClick = this.handleOnClick.bind(this);
-    this.symbol = element_symbols[this.props.num];
+    this.symbol = elementsInfo[this.props.num]["sym"];
+    let elementClass = elementsInfo[this.props.num]["class"];
+    this.color = elementClassColors[elementClass];
   }
 
   handleOnClick() {
@@ -48,7 +48,13 @@ class Element extends React.Component {
     }
 
     return (
-      <div className={e_class} onClick={this.handleOnClick}>
+      <div
+        className={e_class}
+        style={{
+          backgroundColor: RGB_Log_Blend(0.5, this.color, "rgb(220, 220, 220)"),
+        }}
+        onClick={this.handleOnClick}
+      >
         <div className="elem_num">{this.props.num}</div>
         <div className="elem_sym">{this.symbol}</div>
       </div>
@@ -56,34 +62,11 @@ class Element extends React.Component {
   }
 }
 
-const popover = (
+const helpPopover = (
   <Popover id="popover-basic">
     <Popover.Header as="h3">Filtering mode help</Popover.Header>
     <Popover.Body>
-      <b>Exact</b>
-      <br />
-      Only the selected elements are allowed in the resulting chemical formula.
-      For example
-      <div className="doc-elements">
-        <Element
-          num={14}
-          disabled={false}
-          onSelectionChange={null}
-          selection={1}
-          doc={true}
-        />
-        <Element
-          num={8}
-          disabled={false}
-          onSelectionChange={null}
-          selection={1}
-          doc={true}
-        />
-      </div>
-      only allows for formulas in the form of Si<sub>x</sub>O<sub>y</sub>
-      .
-      <br />
-      <b>Include/exclude</b>
+      <b>Include/exclude elements</b>
       <br />
       The green selected elements must be included, while the red elements must
       not be included in the formula. For example
@@ -104,6 +87,28 @@ const popover = (
         />
       </div>
       filters for materials that contain Si and any other elements except O.
+      <br />
+      <b>Only selected elements</b>
+      <br />
+      Only the selected elements are allowed in the resulting chemical formula.
+      For example
+      <div className="doc-elements">
+        <Element
+          num={14}
+          disabled={false}
+          onSelectionChange={null}
+          selection={1}
+          doc={true}
+        />
+        <Element
+          num={8}
+          disabled={false}
+          onSelectionChange={null}
+          selection={1}
+          doc={true}
+        />
+      </div>
+      only allows for formulas in the form of Si<sub>x</sub>O<sub>y</sub>.
     </Popover.Body>
   </Popover>
 );
@@ -116,26 +121,29 @@ class SelectionMode extends React.Component {
   render() {
     return (
       <div className="selection_mode_outer">
-        <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-          <div className="help_button">
-            <span className="help_text">?</span>
-          </div>
-        </OverlayTrigger>
         <div
           className="selection_mode_inner"
           onChange={(e) =>
             this.props.onSelectionChange({ mode: e.target.value })
           }
         >
-          <div style={{ marginBottom: "0px" }}>Filtering mode:</div>
+          <div style={{ marginBottom: "2px" }}>Elements filtering mode:</div>
           <label className="selection_mode_control">
-            <input type="radio" name="sel_mode" value="exact" defaultChecked />
-            Exact
-          </label>
-          <label className="selection_mode_control">
-            <input type="radio" name="sel_mode" value="include" />
+            <input
+              type="radio"
+              name="sel_mode"
+              value="include"
+              defaultChecked
+            />
             Include/exclude
           </label>
+          <label className="selection_mode_control">
+            <input type="radio" name="sel_mode" value="exact" />
+            Only selected
+          </label>
+        </div>
+        <div className="help-button-container">
+          <HelpButton popover={helpPopover} />
         </div>
       </div>
     );
@@ -182,7 +190,7 @@ class PTable extends React.Component {
   makeElements = (start, end) => {
     let items = [];
     for (let i = start; i <= end; i++) {
-      let symbol = element_symbols[i];
+      let symbol = elementsInfo[i]["sym"];
       let selection = 0;
       if (symbol in this.props.filter["elements"])
         selection = this.props.filter["elements"][symbol];

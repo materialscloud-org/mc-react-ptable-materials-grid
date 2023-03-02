@@ -1,6 +1,6 @@
 /* Variables */
 :root {
-  --element-box-size: 36px;
+  --element-box-size: 40px;
 }
 
 .ptable_outer {
@@ -30,7 +30,7 @@
   user-select: none; /* don't select text upon clicking */
   position: relative;
   border: 1px solid #999;
-  border-radius: 6px;
+  border-radius: 2px;
   /* cursor: pointer; */
   /*cursor: default; /* don't charge cursor into a bar when hovering over text */
   display: flex;
@@ -44,11 +44,15 @@
 }
 
 .pt_element-state1 {
-  background: rgb(122, 211, 126);
+  /* background: rgb(122, 211, 126) !important; */
+  background: rgb(14, 197, 23) !important;
+  border: 1px solid black;
+  /* color: white; */
 }
 
 .pt_element-state2 {
-  background: rgb(238, 130, 130);
+  background: rgb(245, 113, 113) !important;
+  border: 1px solid black;
 }
 
 .pt_element-state3 {
@@ -56,8 +60,9 @@
 }
 
 .pt_element-disabled {
-  background: rgb(236, 236, 236);
-  color: #999;
+  filter: contrast(20%) brightness(160%);
+  /* background: rgb(236, 236, 236); */
+  /* color: #999; */
   pointer-events: none; /* no hover on disabled elements */
 }
 
@@ -72,14 +77,16 @@
 }
 
 .elem_num {
-  font-size: 12px;
+  font-size: calc(0.3 * var(--element-box-size));
+  /* font-size: 12px; */
   line-height: 1;
   /* border: 1px solid red; */
 }
 
 .elem_sym {
-  font-size: calc(0.4 * var(--element-box-size));
+  font-size: calc(0.5 * var(--element-box-size));
   line-height: 1;
+  font-weight: 400; /* normal is 400 */
   /* border: 1px solid blue; */
 }
 
@@ -137,26 +144,27 @@
   height: calc(2 * var(--element-box-size) + 1);
   /* background: rgb(238, 3, 3); */
   border: 1px solid #999;
-  border-radius: 6px;
+  border-radius: 3px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   /* background: rgb(236, 236, 236); */
   /* padding-left: 20px; */
 }
 
 .selection_mode_inner {
-  font-size: calc(0.4 * var(--element-box-size));
+  /* font-size: calc(0.4 * var(--element-box-size)); */
+  font-size: 14px;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   /* margin-left: 20px; */
 }
 
 .selection_mode_control {
   /* font-size: calc(0.4 * var(--element-box-size)); */
-  line-height: 1.4;
+  line-height: 1.5;
   margin-left: 15px;
 }
 
@@ -164,39 +172,40 @@
   margin-right: 4px;
 }
 
-/* ----------------------------- */
-
-.help_button {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  border: 2px solid #999;
-  border-radius: 50%;
-  height: calc(0.6 * var(--element-box-size));
+.help-button-container {
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  /* font-size: calc(0.4 * var(--element-box-size));
   width: calc(0.6 * var(--element-box-size));
-  line-height: calc(0.6 * var(--element-box-size));
-  cursor: default; /* don't charge cursor into a bar when hovering over text */
-  user-select: none; /* don't select text upon clicking */
-  justify-items: center;
-  align-items: center;
-  background: rgb(236, 236, 236);
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-  font-size: calc(0.45 * var(--element-box-size));
+  height: calc(0.6 * var(--element-box-size)); */
 }
 
-.help_button:hover {
-  filter: brightness(85%);
+/* ----------------------------- */
+
+@media screen and (max-width: 940px) {
+  :root {
+    --element-box-size: 34px;
+  }
 }
 
 @media screen and (max-width: 800px) {
   :root {
-    --element-box-size: 30px;
+    --element-box-size: 28px;
+  }
+  .elem_sym {
+    font-size: calc(0.6 * var(--element-box-size));
   }
   .elem_num {
     display: none;
   }
+}
+
+@media screen and (max-width: 650px) {
+  :root {
+    --element-box-size: 22px;
+  }
+  /* .elem_num {
+    display: none;
+  } */
 }
