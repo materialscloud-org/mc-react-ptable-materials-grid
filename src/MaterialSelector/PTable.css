@@ -1,6 +1,7 @@
 /* Variables */
 :root {
   --element-box-size: 40px;
+  --selection-mode-font: 14px;
 }
 
 .ptable_outer {
@@ -9,13 +10,14 @@
   /*margin-top: -4vw;*/
   /* max-width: 1700px; */
   /* transform: scale(0.8); */
-  text-align: center;
+  /* text-align: center; */
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .ptable {
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(17, auto) 1fr;
   grid-template-rows: repeat(10, auto) 1fr;
@@ -155,7 +157,7 @@
 
 .selection_mode_inner {
   /* font-size: calc(0.4 * var(--element-box-size)); */
-  font-size: 14px;
+  font-size: var(--selection-mode-font);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -173,9 +175,9 @@
 }
 
 .help-button-container {
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
+  width: calc(1.4 * var(--selection-mode-font));
+  height: calc(1.4 * var(--selection-mode-font));
+  font-size: var(--selection-mode-font);
   /* font-size: calc(0.4 * var(--element-box-size));
   width: calc(0.6 * var(--element-box-size));
   height: calc(0.6 * var(--element-box-size)); */
@@ -192,6 +194,7 @@
 @media screen and (max-width: 700px) {
   :root {
     --element-box-size: 28px;
+    --selection-mode-font: 12px;
   }
   .elem_sym {
     font-size: calc(0.6 * var(--element-box-size));
@@ -204,6 +207,7 @@
 @media screen and (max-width: 570px) {
   :root {
     --element-box-size: 22px;
+    --selection-mode-font: 10px;
   }
   /* .elem_num {
     display: none;

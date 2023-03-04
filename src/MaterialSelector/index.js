@@ -4,6 +4,8 @@ import PTable from "./PTable";
 
 import MaterialDataGrid from "./MaterialDataGrid";
 
+import "./index.css";
+
 class MaterialSelector extends React.Component {
   constructor(props) {
     super(props);
@@ -67,7 +69,7 @@ class MaterialSelector extends React.Component {
 
   render() {
     return (
-      <div style={{ width: "min(95vw, 940px)" }}>
+      <div className="material_selector_container">
         <PTable
           onSelectionChange={this.handlePTableChange}
           filter={this.state.ptableFilter}
