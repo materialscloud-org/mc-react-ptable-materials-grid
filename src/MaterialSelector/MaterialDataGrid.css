@@ -14,3 +14,14 @@
 .ag-center-cols-container {
   min-height: 300px !important;
 }
+
+.grid_header_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rows_text {
+  font-size: 20px;
+  font-weight: 600;
+}

@@ -54,6 +54,7 @@ class MaterialDataGrid extends React.Component {
     super(props);
     this.state = {
       columnDefs: this.getColumnDefs(),
+      numRows: null,
     };
   }
 
@@ -124,6 +125,13 @@ class MaterialDataGrid extends React.Component {
     return Object.keys(this.props.ptable_filter["elements"]).length > 0;
   };
 
+  updateNumRows = () => {
+    if (this.gridApi) {
+      let nRows = this.gridApi.getDisplayedRowCount();
+      if (this.state.numRows != nRows) this.setState({ numRows: nRows });
+    }
+  };
+
   doesExternalFilterPass = (node) => {
     if (node.data) {
       if (this.props.ptable_filter["mode"] == "exact") {
@@ -168,7 +176,10 @@ class MaterialDataGrid extends React.Component {
     };
     return (
       <div>
-        <div style={{ textAlign: "right" }}>
+        <div className="grid_header_row">
+          <span className="rows_text">
+            Showing {this.state.numRows} entries out of {this.props.rows.length}
+          </span>
           <ColumnSelector
             onColumnToggle={this.handleColumnToggle}
             colDefs={this.getColumnDefs().slice(1)}
@@ -183,6 +194,8 @@ class MaterialDataGrid extends React.Component {
             onGridReady={this.onGridReady}
             isExternalFilterPresent={this.isExternalFilterPresent}
             doesExternalFilterPass={this.doesExternalFilterPass}
+            onFilterChanged={this.updateNumRows}
+            onRowDataUpdated={this.updateNumRows}
           />
         </div>
       </div>
