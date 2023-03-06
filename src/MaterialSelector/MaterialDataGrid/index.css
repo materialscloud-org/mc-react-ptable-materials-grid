@@ -23,7 +23,20 @@
   align-items: center;
 }
 
+.grid_header_row_right_side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
 .rows_text {
   font-size: 20px;
   font-weight: 600;
+}
+
+.help-button-container {
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
 }

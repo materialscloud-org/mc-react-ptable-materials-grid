@@ -143,7 +143,7 @@ class SelectionMode extends React.Component {
           </label>
         </div>
         <div className="help-button-container">
-          <HelpButton popover={helpPopover} />
+          <HelpButton popover={helpPopover} placement="right" />
         </div>
       </div>
     );

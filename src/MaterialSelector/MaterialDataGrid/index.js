@@ -1,5 +1,7 @@
 import React from "react";
 
+import Popover from "react-bootstrap/Popover";
+
 import { AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/styles/ag-grid.css";
@@ -10,6 +12,8 @@ import "./index.css";
 import ColumnSelector from "./ColumnSelector";
 
 import CustomHeader from "./CustomHeader";
+
+import HelpButton from "../HelpButton";
 
 function idCellRenderer(params) {
   return (
@@ -59,6 +63,29 @@ const defaultColDef = {
 const components = {
   agColumnHeader: CustomHeader,
 };
+
+const helpPopover = (
+  <Popover id="popover-basic">
+    <Popover.Header as="h3">Materials Grid help</Popover.Header>
+    <Popover.Body>
+      <p>
+        The Materials Grid, shown below, contains all the filtered materials.
+      </p>
+      <p>
+        Selected properties are shown in columns. Click <b>Show columns</b> to
+        hide/show available columns.
+      </p>
+      <p>
+        The grid can be sorted based on any column by clicking on the
+        corresponding label in the header. <b>Holding down shift</b> allows to
+        sort based on multiple columns.
+      </p>
+      The list of materials can be filtered based on the columns by clicking the
+      filter icon. Active filters are indicated by a blue background of the
+      icon.
+    </Popover.Body>
+  </Popover>
+);
 
 class MaterialDataGrid extends React.Component {
   constructor(props) {
@@ -201,10 +228,15 @@ class MaterialDataGrid extends React.Component {
           <span className="rows_text">
             Showing {this.state.numRows} entries out of {this.props.rows.length}
           </span>
-          <ColumnSelector
-            onColumnToggle={this.handleColumnToggle}
-            colDefs={this.getColumnDefs().slice(1)}
-          />
+          <div className="grid_header_row_right_side">
+            <div className="help-button-container">
+              <HelpButton popover={helpPopover} placement="left" />
+            </div>
+            <ColumnSelector
+              onColumnToggle={this.handleColumnToggle}
+              colDefs={this.getColumnDefs().slice(1)}
+            />
+          </div>
         </div>
         <div className="ag-theme-alpine">
           <AgGridReact
