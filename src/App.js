@@ -36,12 +36,12 @@ const columns = [
   },
   {
     field: "spg_int",
-    headerName: "Spacegroup int.",
+    headerName: "Spacegroup symbol",
     colType: "text",
   },
   {
     field: "spg_num",
-    headerName: "Spacegroup nr.",
+    headerName: "Spacegroup number",
     colType: "integer",
     hide: true,
   },
@@ -52,7 +52,8 @@ const columns = [
   },
   {
     field: "abs_mag",
-    headerName: "Abs. magn.",
+    headerName: "Absolute magn.",
+    unit: "μB/cell",
     colType: "float",
   },
 ];

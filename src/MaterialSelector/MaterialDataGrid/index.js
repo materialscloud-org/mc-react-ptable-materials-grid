@@ -4,9 +4,12 @@ import { AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import "./MaterialDataGrid.css";
+
+import "./index.css";
 
 import ColumnSelector from "./ColumnSelector";
+
+import CustomHeader from "./CustomHeader";
 
 function idCellRenderer(params) {
   return (
@@ -47,6 +50,14 @@ const defaultColDef = {
   width: 150,
   sortable: true,
   //resizable: true,
+  icons: {
+    menu: '<i class="ag-icon ag-icon-filter"/>',
+    // filter: '<i class="fa fa-long-arrow-alt-down"/>',
+  },
+};
+
+const components = {
+  agColumnHeader: CustomHeader,
 };
 
 class MaterialDataGrid extends React.Component {
@@ -82,16 +93,19 @@ class MaterialDataGrid extends React.Component {
       if (col["colType"] === "text") {
         Object.assign(formatted_col, {
           filter: "agTextColumnFilter",
+          filterParams: { buttons: ["apply", "reset"], closeOnApply: true },
         });
       } else if (col["colType"] === "integer") {
         Object.assign(formatted_col, {
-          type: "numericColumn",
+          // type: "numericColumn",
           filter: "agNumberColumnFilter",
+          filterParams: { buttons: ["apply", "reset"], closeOnApply: true },
         });
       } else if (col["colType"] === "float") {
         Object.assign(formatted_col, {
-          type: "numericColumn",
+          // type: "numericColumn",
           filter: "agNumberColumnFilter",
+          filterParams: { buttons: ["apply", "reset"], closeOnApply: true },
           valueFormatter: floatFormatter,
         });
       }
@@ -173,6 +187,7 @@ class MaterialDataGrid extends React.Component {
       enableCellTextSelection: true,
       ensureDomOrder: true,
       domLayout: "autoHeight",
+      headerHeight: 50,
     };
     return (
       <div>
@@ -186,6 +201,11 @@ class MaterialDataGrid extends React.Component {
           />
         </div>
         <div className="ag-theme-alpine">
+          <div className="ag-icon ag-icon-filter" />
+          <div style={{ width: "200px" }}>
+            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
+            ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+          </div>
           <AgGridReact
             columnDefs={this.state.columnDefs}
             defaultColDef={defaultColDef}
@@ -196,6 +216,7 @@ class MaterialDataGrid extends React.Component {
             doesExternalFilterPass={this.doesExternalFilterPass}
             onFilterChanged={this.updateNumRows}
             onRowDataUpdated={this.updateNumRows}
+            components={components}
           />
         </div>
       </div>

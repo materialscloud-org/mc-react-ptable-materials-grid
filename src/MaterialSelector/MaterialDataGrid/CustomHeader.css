@@ -1,0 +1,62 @@
+.custom-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-div-active {
+  background-color: rgb(38, 107, 255);
+  border-radius: 50%;
+  padding: 1px;
+  border: 1px solid rgb(76, 58, 238);
+  color: white;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 20px;
+  height: 20px; */
+}
+.filter-div-inactive {
+  /* background-color: rgb(137, 178, 255); */
+  border-radius: 50%;
+  padding: 2px;
+  /* border: 1px solid rgb(134, 134, 134); */
+}
+
+.customHeaderMenuButton {
+  float: left;
+  margin: 0 0 0 3px;
+}
+
+.customHeaderLabel {
+  float: left;
+  margin: 0 0 0 3px;
+  /* width: 80px; */
+  /* background-color: red; */
+  border: 1px solid rgb(207, 207, 207);
+  /* height: 80px; */
+  /* text-overflow: clip; */
+  /* overflow: visible; */
+  white-space: normal;
+}
+
+.customSortDownLabel {
+  float: left;
+  margin: 0 0 0 3px;
+}
+
+.customSortUpLabel {
+  float: left;
+  margin: 0;
+}
+
+.customSortRemoveLabel {
+  float: left;
+  margin: 0 0 0 3px;
+  font-size: 11px;
+}
+
+.active {
+  color: cornflowerblue;
+}
