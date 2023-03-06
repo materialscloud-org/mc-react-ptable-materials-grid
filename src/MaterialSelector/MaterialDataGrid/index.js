@@ -117,6 +117,12 @@ class MaterialDataGrid extends React.Component {
       if (col["field"] === "formula") {
         formatted_col["cellRenderer"] = formulaCellRenderer;
       }
+
+      if ("unit" in col) {
+        formatted_col["headerComponentParams"] = { unit: col["unit"] };
+        delete formatted_col["unit"];
+      }
+
       return formatted_col;
     });
   }
@@ -187,7 +193,7 @@ class MaterialDataGrid extends React.Component {
       enableCellTextSelection: true,
       ensureDomOrder: true,
       domLayout: "autoHeight",
-      headerHeight: 50,
+      headerHeight: 54,
     };
     return (
       <div>
@@ -201,11 +207,6 @@ class MaterialDataGrid extends React.Component {
           />
         </div>
         <div className="ag-theme-alpine">
-          <div className="ag-icon ag-icon-filter" />
-          <div style={{ width: "200px" }}>
-            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-            ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-          </div>
           <AgGridReact
             columnDefs={this.state.columnDefs}
             defaultColDef={defaultColDef}

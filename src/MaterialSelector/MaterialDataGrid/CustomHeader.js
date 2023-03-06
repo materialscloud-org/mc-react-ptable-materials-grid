@@ -8,19 +8,27 @@ export default class CustomHeader extends React.Component {
 
     this.state = {
       sortMode: "none",
+      multiSort: false,
+      sortIndex: null,
       filterActive: false,
     };
+  }
 
-    props.column.addEventListener("sortChanged", this.onSortChanged.bind(this));
-    props.column.addEventListener(
+  componentDidMount() {
+    this.props.column.addEventListener(
       "filterChanged",
       this.onFilterChanged.bind(this)
     );
 
-    this.onSortClicked.bind(this);
-  }
+    // note: same eventlistener can be applied to the column api
+    // but the sortIndex is not updated correctly in that case
+    this.props.api.addEventListener(
+      "sortChanged",
+      this.onSortChanged.bind(this)
+    );
 
-  componentDidMount() {
+    this.onSortClicked.bind(this);
+
     this.onSortChanged();
     this.onFilterChanged();
   }
@@ -46,51 +54,36 @@ export default class CustomHeader extends React.Component {
       </div>
     );
 
-    // let sort = (
-    //   <div style={{ display: "inline-block" }}>
-    //     <div
-    //       onClick={this.onSortRequested.bind(this, "asc")}
-    //       onTouchEnd={this.onSortRequested.bind(this, "asc")}
-    //       className={`customSortDownLabel ${this.state.ascSort}`}
-    //     >
-    //       {/* <i className="ag-icon ag-icon-menu"></i> */}D
-    //     </div>
-    //     <div
-    //       onClick={this.onSortRequested.bind(this, "desc")}
-    //       onTouchEnd={this.onSortRequested.bind(this, "desc")}
-    //       className={`customSortUpLabel ${this.state.descSort}`}
-    //     >
-    //       {/* <i className="ag-icon ag-icon-menu"></i> */}U
-    //     </div>
-    //     <div
-    //       onClick={this.onSortRequested.bind(this, "")}
-    //       onTouchEnd={this.onSortRequested.bind(this, "")}
-    //       className={`customSortRemoveLabel ${this.state.noSort}`}
-    //     >
-    //       {/* <i className="ag-icon ag-icon-menu"></i> */}R
-    //     </div>
-    //   </div>
-    // );
     let sortSymbol = "";
     if (this.state.sortMode == "asc")
       sortSymbol = (
         <div style={{ display: "flex" }}>
-          1
+          {this.state.multiSort && this.state.sortIndex + 1}
           <i className="ag-icon ag-icon-asc" />
         </div>
       );
     if (this.state.sortMode == "desc")
-      sortSymbol = <i className="ag-icon ag-icon-desc" />;
+      sortSymbol = (
+        <div style={{ display: "flex" }}>
+          {this.state.multiSort && this.state.sortIndex + 1}
+          <i className="ag-icon ag-icon-desc" />
+        </div>
+      );
 
     return (
       <div className="custom-header-container">
-        <div
-          className="customHeaderLabel"
-          onClick={this.onSortClicked.bind(this)}
-        >
-          {this.props.displayName}
+        <div className="custom-header-label-container">
+          {sortSymbol}
+          <div
+            className="customHeaderLabel"
+            onClick={this.onSortClicked.bind(this)}
+          >
+            <span>{this.props.displayName}</span>
+            {"unit" in this.props && (
+              <div className="unit-label">({this.props.unit})</div>
+            )}
+          </div>
         </div>
-        {sortSymbol}
         {menu}
       </div>
     );
@@ -104,10 +97,22 @@ export default class CustomHeader extends React.Component {
     let sortMode = "none";
     if (this.props.column.isSortAscending()) sortMode = "asc";
     if (this.props.column.isSortDescending()) sortMode = "desc";
+
+    let numSortActive = this.props.column.columnApi
+      .getColumnState()
+      .filter((s) => s.sort !== null).length;
+
+    let multiSort = numSortActive > 1;
+
+    let sortIndex = this.props.column.getSortIndex();
+
     this.setState({
       sortMode: sortMode,
+      multiSort: multiSort,
+      sortIndex: sortIndex,
     });
   }
+
   onFilterChanged() {
     this.setState({
       filterActive: this.props.column.isFilterActive(),
@@ -117,10 +122,5 @@ export default class CustomHeader extends React.Component {
   onSortClicked(event) {
     // multi sort if Shift key is pressed
     this.props.progressSort(event.shiftKey);
-    console.log(
-      this.props.column.columnApi
-        .getColumnState()
-        .filter((s) => s.sort !== null).length
-    );
   }
 }

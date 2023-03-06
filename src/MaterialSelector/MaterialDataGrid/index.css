@@ -7,6 +7,8 @@
   --ag-header-column-separator-height: 70%;
   --ag-header-column-separator-width: 1px;
   --ag-header-column-separator-color: rgb(185, 185, 185);
+
+  --ag-cell-horizontal-padding: 12px;
 }
 
 /* override the 50px min height */

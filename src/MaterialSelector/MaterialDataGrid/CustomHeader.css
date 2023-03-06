@@ -4,6 +4,13 @@
   align-items: center;
 }
 
+.custom-header-label-container {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  gap: 1px;
+}
+
 .filter-div-active {
   background-color: rgb(38, 107, 255);
   border-radius: 50%;
@@ -24,21 +31,30 @@
   /* border: 1px solid rgb(134, 134, 134); */
 }
 
-.customHeaderMenuButton {
+/* .customHeaderMenuButton {
   float: left;
   margin: 0 0 0 3px;
-}
+  margin-right: -5px;
+} */
 
 .customHeaderLabel {
-  float: left;
-  margin: 0 0 0 3px;
+  /* float: left; */
+  /* margin: 0 0 0 3px; */
   /* width: 80px; */
   /* background-color: red; */
-  border: 1px solid rgb(207, 207, 207);
+  /* border: 1px solid rgb(207, 207, 207); */
   /* height: 80px; */
   /* text-overflow: clip; */
   /* overflow: visible; */
   white-space: normal;
+  overflow: hidden;
+  position: relative;
+  /* text-overflow: ellipsis; */
+  /* background: white; */
+}
+
+.unit-label {
+  font-weight: normal;
 }
 
 .customSortDownLabel {
