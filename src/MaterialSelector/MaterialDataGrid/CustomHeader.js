@@ -94,6 +94,7 @@ export default class CustomHeader extends React.Component {
   }
 
   onSortChanged() {
+    console.log(this.props);
     let sortMode = "none";
     if (this.props.column.isSortAscending()) sortMode = "asc";
     if (this.props.column.isSortDescending()) sortMode = "desc";
