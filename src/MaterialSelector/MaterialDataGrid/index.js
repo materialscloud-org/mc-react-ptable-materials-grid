@@ -50,14 +50,29 @@ function formulaCellRenderer(params) {
   );
 }
 
+function spaceGroupSymbolRenderer(params) {
+  let nextIsSub = false;
+  return (
+    <span>
+      {params.value.split("").map((v, index) => {
+        if (v == "_") {
+          nextIsSub = true;
+          return null;
+        }
+        if (nextIsSub) {
+          nextIsSub = false;
+          return <sub key={index}>{v}</sub>;
+        }
+        return v;
+      })}
+    </span>
+  );
+}
+
 const defaultColDef = {
   width: 150,
   sortable: true,
   //resizable: true,
-  icons: {
-    menu: '<i class="ag-icon ag-icon-filter"/>',
-    // filter: '<i class="fa fa-long-arrow-alt-down"/>',
-  },
 };
 
 const components = {
@@ -143,6 +158,9 @@ class MaterialDataGrid extends React.Component {
       }
       if (col["field"] === "formula") {
         formatted_col["cellRenderer"] = formulaCellRenderer;
+      }
+      if (col["field"] === "spg_int") {
+        formatted_col["cellRenderer"] = spaceGroupSymbolRenderer;
       }
 
       if ("unit" in col) {

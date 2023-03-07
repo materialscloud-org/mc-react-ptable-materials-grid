@@ -36,14 +36,13 @@ const columns = [
   },
   {
     field: "spg_int",
-    headerName: "Spacegroup symbol",
+    headerName: "Space group international",
     colType: "text",
   },
   {
     field: "spg_num",
-    headerName: "Spacegroup number",
+    headerName: "Space group number",
     colType: "integer",
-    // hide: true,
   },
   {
     field: "tot_mag",
