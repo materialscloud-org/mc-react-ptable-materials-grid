@@ -94,12 +94,18 @@ export default class CustomHeader extends React.Component {
   }
 
   onSortChanged() {
-    console.log(this.props);
+    if (!this.props.columnApi) {
+      // note: for ag-grid <v28.2.0 the correct columnApi path was
+      // this.props.column.columnApi
+      console.log("COLUMNAPI undefined!");
+      return;
+    }
+
     let sortMode = "none";
     if (this.props.column.isSortAscending()) sortMode = "asc";
     if (this.props.column.isSortDescending()) sortMode = "desc";
 
-    let numSortActive = this.props.column.columnApi
+    let numSortActive = this.props.columnApi
       .getColumnState()
       .filter((s) => s.sort !== null).length;
 

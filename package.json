@@ -1,6 +1,6 @@
 {
   "name": "mc-react-ptable-materials-grid",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "author": "Kristjan Eimre <kristjan.eimre@epfl.ch>",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -14,8 +14,8 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "ag-grid-community": "^28.1.0",
-    "ag-grid-react": "^28.1.0",
+    "ag-grid-community": "^28.2.1",
+    "ag-grid-react": "^28.2.1",
     "bootstrap": "^5.2.2",
     "react": "^18.1.0",
     "react-bootstrap": "^2.6.0",
