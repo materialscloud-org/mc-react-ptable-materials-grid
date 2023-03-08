@@ -72,12 +72,12 @@ export default class CustomHeader extends React.Component {
 
     return (
       <div className="custom-header-container">
-        <div className="custom-header-label-container">
+        <div
+          className="custom-header-label-container"
+          onClick={this.onSortClicked.bind(this)}
+        >
           {sortSymbol}
-          <div
-            className="customHeaderLabel"
-            onClick={this.onSortClicked.bind(this)}
-          >
+          <div className="customHeaderLabel">
             <span>{this.props.displayName}</span>
             {"unit" in this.props && (
               <div className="unit-label">({this.props.unit})</div>
