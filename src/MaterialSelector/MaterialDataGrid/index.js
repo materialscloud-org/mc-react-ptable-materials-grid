@@ -135,22 +135,22 @@ class MaterialDataGrid extends React.Component {
       if (col["colType"] === "text") {
         Object.assign(formatted_col, {
           filter: "agTextColumnFilter",
-          filterParams: { buttons: ["apply", "reset"], closeOnApply: true },
         });
       } else if (col["colType"] === "integer") {
         Object.assign(formatted_col, {
           // type: "numericColumn",
           filter: "agNumberColumnFilter",
-          filterParams: { buttons: ["apply", "reset"], closeOnApply: true },
         });
       } else if (col["colType"] === "float") {
         Object.assign(formatted_col, {
           // type: "numericColumn",
           filter: "agNumberColumnFilter",
-          filterParams: { buttons: ["apply", "reset"], closeOnApply: true },
           valueFormatter: floatFormatter,
         });
       }
+      Object.assign(formatted_col, {
+        filterParams: { buttons: ["reset", "apply"], closeOnApply: true },
+      });
 
       if (col["field"] === "id") {
         formatted_col["pinned"] = "left";
