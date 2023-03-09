@@ -41,6 +41,7 @@ export default class CustomHeader extends React.Component {
         }}
         className="customHeaderMenuButton"
         onClick={this.onMenuClicked.bind(this)}
+        onTouchEnd={this.onMenuClicked.bind(this)}
       >
         {this.state.filterActive ? (
           <div className="filter-div-active">
@@ -75,6 +76,7 @@ export default class CustomHeader extends React.Component {
         <div
           className="custom-header-label-container"
           onClick={this.onSortClicked.bind(this)}
+          onTouchEnd={this.onSortClicked.bind(this)}
         >
           {sortSymbol}
           <div className="customHeaderLabel">
