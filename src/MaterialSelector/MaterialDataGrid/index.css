@@ -40,3 +40,23 @@
   height: 20px;
   font-size: 14px;
 }
+
+/* make the horizontal scrollbar appear at the top of the table */
+.ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-header {
+  order: 1;
+}
+.ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-body-horizontal-scroll {
+  order: 2;
+}
+.ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-floating-top {
+  order: 3;
+}
+.ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-body-viewport {
+  order: 4;
+}
+.ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-floating-bottom {
+  order: 5;
+}
+.ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-overlay {
+  order: 6;
+}
