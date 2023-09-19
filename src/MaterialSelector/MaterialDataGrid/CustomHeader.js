@@ -34,7 +34,7 @@ export default class CustomHeader extends React.Component {
   }
 
   render() {
-    let menu = (
+    let filterMenu = (
       <div
         ref={(menuButton) => {
           this.menuButton = menuButton;
@@ -44,12 +44,12 @@ export default class CustomHeader extends React.Component {
         onTouchEnd={this.onMenuClicked.bind(this)}
       >
         {this.state.filterActive ? (
-          <div className="filter-div-active">
+          <div className="filter-div active">
             <i className="ag-icon ag-icon-filter" />
           </div>
         ) : (
-          <div className="filter-div-inactive">
-            <i className="ag-icon ag-icon-filter" />
+          <div className="filter-div">
+            <i className="ag-icon ag-icon-menu" />
           </div>
         )}
       </div>
@@ -71,28 +71,71 @@ export default class CustomHeader extends React.Component {
         </div>
       );
 
+    let columnTitle = (
+      <div
+        className="custom-header-label-container"
+        onClick={this.onSortClicked.bind(this)}
+        onTouchEnd={this.onSortClicked.bind(this)}
+      >
+        {sortSymbol}
+        <div className="customHeaderLabel">
+          <span>{this.props.displayName}</span>
+          {"unit" in this.props && (
+            <div className="unit-label">({this.props.unit})</div>
+          )}
+        </div>
+      </div>
+    );
+
+    // wrap the column title in tooltip
+    // let columnTitleWithTooltip = (
+    //   <OverlayTrigger
+    //     delay={500}
+    //     overlay={
+    //       <Tooltip
+    //         style={{
+    //           position: "fixed",
+    //         }}
+    //       >
+    //         text <br /> Click to sort!
+    //       </Tooltip>
+    //     }
+    //   >
+    //     {columnTitle}
+    //   </OverlayTrigger>
+    // );
+
     return (
       <div className="custom-header-container">
-        <div
-          className="custom-header-label-container"
-          onClick={this.onSortClicked.bind(this)}
-          onTouchEnd={this.onSortClicked.bind(this)}
-        >
-          {sortSymbol}
-          <div className="customHeaderLabel">
-            <span>{this.props.displayName}</span>
-            {"unit" in this.props && (
-              <div className="unit-label">({this.props.unit})</div>
-            )}
-          </div>
-        </div>
-        {menu}
+        {columnTitle}
+        {filterMenu}
       </div>
     );
   }
 
   onMenuClicked() {
     this.props.showColumnMenu(this.menuButton);
+
+    // hacky way to add extra text in the filter menu:
+    const targetDiv = document.querySelector(".ag-menu.ag-ltr.ag-popup-child");
+
+    if (targetDiv) {
+      targetDiv.style.maxWidth = "200px";
+
+      const divApplyLabel = document.createElement("div");
+      divApplyLabel.style.margin = "5px 10px 0px 10px";
+      divApplyLabel.innerHTML = "<b>Apply filter:</b>";
+      targetDiv.prepend(divApplyLabel);
+
+      if (this.props.infoText != null) {
+        const divInfo = document.createElement("div");
+        divInfo.style.margin = "10px 10px 0px 10px";
+        // divInfo.style.background = "red";
+        divInfo.style.textAlign = "justify";
+        divInfo.innerHTML = this.props.infoText;
+        targetDiv.prepend(divInfo);
+      }
+    }
   }
 
   onSortChanged() {

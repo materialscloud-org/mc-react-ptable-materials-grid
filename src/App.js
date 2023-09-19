@@ -14,6 +14,8 @@ import MaterialSelector from "./MaterialSelector";
  some columns are special: id, formula (see the implementation)
  * colType: "text", "integer", "float" - defines formatting & filters
  * hide: true if the column is hidden initially
+ * unit
+ * infoText
  any additional input is passed to ag-grid column definitions (e.g. width) 
  */
 const columns = [
@@ -21,12 +23,14 @@ const columns = [
     field: "id",
     headerName: "ID",
     colType: "text",
+    infoText: "The unique MC3D identifier of a structure.",
   },
   {
     field: "formula",
     headerName: "Formula",
     colType: "text",
     // width: 180,
+    infoText: "The full formula in Hill notation.",
   },
   {
     field: "n_elem",
@@ -38,11 +42,32 @@ const columns = [
     field: "spg_int",
     headerName: "Space group international",
     colType: "text",
+    infoText: "International short symbol for the space group.",
   },
   {
     field: "spg_num",
     headerName: "Space group number",
     colType: "integer",
+  },
+  {
+    field: "is_theoretical",
+    headerName: "Is theoretical?",
+    colType: "text",
+    infoText: "Does the source database report the structure as theoretical?",
+  },
+  {
+    field: "is_high_pressure",
+    headerName: "Is high (exp.) pressure?",
+    colType: "text",
+    infoText:
+      "Does the source database report the experimental pressure higher than X KPa?",
+  },
+  {
+    field: "is_high_temperature",
+    headerName: "Is high (exp.) temperature?",
+    colType: "text",
+    infoText:
+      "Does the source database report the experimental temperature higher than X °C?",
   },
   {
     field: "tot_mag",
@@ -64,20 +89,33 @@ function calcElementArray(formula) {
   return elements;
 }
 
-function formatRows(compounds) {
+function formatRows(entries) {
   var rows = [];
-  //var compounds = { Ag5O4Si: compounds_["Ag5O4Si"] };
-  Object.keys(compounds).forEach((i) => {
-    Object.keys(compounds[i]).forEach((j) => {
-      var comp = compounds[i][j];
-      var elemArr = calcElementArray(i);
+
+  // for testing a small subset:
+  // var entries = {
+  //   "mc3d-10": entries["mc3d-10"],
+  //   "mc3d-228": entries["mc3d-228"],
+  //   "mc3d-10010": entries["mc3d-10010"],
+  //   "mc3d-10019": entries["mc3d-10019"],
+  //   "mc3d-10802": entries["mc3d-10802"],
+  //   "mc3d-75049": entries["mc3d-75049"],
+  // };
+
+  Object.keys(entries).forEach((i) => {
+    var comp = entries[i];
+    var elemArr = calcElementArray(comp["formula"]);
+    var exp_obs = true;
+    if ("flg" in comp && comp["flg"].includes("th")) exp_obs = false;
+
+    Object.keys(comp["xc"]).forEach((func) => {
+      var mc3d_id = `${i}/${func}`;
       var row = {
-        id: comp["id"],
-        formula: i,
-        spg_int: comp["spg"],
-        spg_num: comp["spgn"],
-        tot_mag: "tm" in comp ? comp["tm"] : null,
-        abs_mag: "am" in comp ? comp["am"] : null,
+        id: mc3d_id,
+        formula: comp["formula"],
+        spg_num: comp["sg"],
+        tot_mag: comp["xc"][func]["tm"] ?? null,
+        abs_mag: comp["xc"][func]["am"] ?? null,
         n_elem: elemArr.length,
         elem_array: elemArr,
         href: "https://www.materialscloud.org",
@@ -96,7 +134,7 @@ async function loadDataMc3d() {
   const json = await response.json();
 
   // return a Promise of the correctly formatted data
-  return formatRows(json.data.compounds);
+  return formatRows(json.data);
 }
 
 function App() {

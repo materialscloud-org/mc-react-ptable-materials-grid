@@ -65,7 +65,7 @@ export class Element extends React.Component {
 const helpPopover = (
   <Popover id="popover-basic">
     <Popover.Header as="h3">Filtering mode help</Popover.Header>
-    <Popover.Body>
+    <Popover.Body style={{ textAlign: "justify" }}>
       <b>Include/exclude elements</b>
       <br />
       The green selected elements must be included, while the red elements must

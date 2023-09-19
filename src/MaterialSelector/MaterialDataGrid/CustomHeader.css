@@ -12,24 +12,44 @@
   gap: 1px;
 }
 
-.filter-div-active {
-  background-color: rgb(38, 107, 255);
+.filter-div {
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
   border-radius: 50%;
-  padding: 1px;
+  background: rgb(248, 248, 248);
+}
+.filter-div:hover {
+  filter: brightness(85%);
+}
+
+.filter-div.active {
+  background-color: rgb(38, 107, 255);
+  /* border-radius: 50%; */
+  /* padding: 2px; */
   border: 1px solid rgb(76, 58, 238);
   color: white;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 20px;
-  height: 20px; */
 }
+
 .filter-div-inactive {
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
   /* background-color: rgb(137, 178, 255); */
   border-radius: 50%;
-  padding: 2px;
+  /* padding: 3px; */
   /* border: 1px solid rgb(134, 134, 134); */
+  /* border: 1px solid rgb(104, 104, 104); */
+  /* box-shadow: 0px 0px 0px 1px rgb(104, 104, 104) inset; */
+  background: rgb(248, 248, 248);
 }
 
 /* .customHeaderMenuButton {

@@ -88,7 +88,7 @@ const components = {
 const helpPopover = (
   <Popover id="popover-basic">
     <Popover.Header as="h3">Materials Grid help</Popover.Header>
-    <Popover.Body>
+    <Popover.Body style={{ textAlign: "justify" }}>
       <p>
         The Materials Grid, shown below, contains all the filtered materials.
       </p>
@@ -101,9 +101,9 @@ const helpPopover = (
         corresponding label in the header. <b>Holding down shift</b> allows to
         sort based on multiple columns.
       </p>
-      The list of materials can be filtered based on the columns by clicking the
-      filter icon. Active filters are indicated by a blue background of the
-      icon.
+      Each column has a menu that contains any additional information about the
+      column, and allows to filter the list of materials. Active filters are
+      indicated by the menu icon turning into a blue filter icon.
     </Popover.Body>
   </Popover>
 );
@@ -172,6 +172,10 @@ class MaterialDataGrid extends React.Component {
       if ("unit" in col) {
         formatted_col["headerComponentParams"] = { unit: col["unit"] };
         delete formatted_col["unit"];
+      }
+      if ("infoText" in col) {
+        formatted_col["headerComponentParams"] = { infoText: col["infoText"] };
+        delete formatted_col["infoText"];
       }
 
       return formatted_col;
