@@ -29,13 +29,16 @@ function idCellRenderer(params) {
 }
 
 function floatFormatter(params) {
-  if (params.value === null) {
+  if (params.value == null) {
     return "-";
   }
   return params.value.toFixed(2);
 }
 
 function formulaCellRenderer(params) {
+  if (params.value == null) {
+    return "-";
+  }
   // split formula into array of elements and numbers
   let f_split = params.value.split(/(\d+)/);
   return (
@@ -51,6 +54,9 @@ function formulaCellRenderer(params) {
 }
 
 function spaceGroupSymbolRenderer(params) {
+  if (params.value == null) {
+    return "-";
+  }
   let nextIsSub = false;
   return (
     <span>
