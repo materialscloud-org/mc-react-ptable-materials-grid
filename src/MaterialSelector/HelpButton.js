@@ -8,6 +8,7 @@ function HelpButton(props) {
   return (
     <OverlayTrigger
       trigger="click"
+      rootClose
       placement={props.placement}
       overlay={props.popover}
     >
