@@ -10,7 +10,6 @@ class MaterialSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows: [],
       ptableFilter: { mode: "include", elements: {} },
     };
     /* ptableFilter:
@@ -19,14 +18,6 @@ class MaterialSelector extends React.Component {
     */
 
     this.handlePTableChange = this.handlePTableChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.loadData().then((loaded_rows) => {
-      this.setState({
-        rows: loaded_rows,
-      });
-    });
   }
 
   handlePTableChange(filter_change) {
@@ -68,19 +59,35 @@ class MaterialSelector extends React.Component {
   }
 
   render() {
+    let is_loaded = this.props.columns.length > 0;
     return (
       <div className="material_selector_container">
         <PTable
           onSelectionChange={this.handlePTableChange}
           filter={this.state.ptableFilter}
-          rows={this.state.rows}
+          rows={this.props.rows}
         />
         <div style={{ marginTop: "5px" }}></div>
-        <MaterialDataGrid
-          columns={this.props.columns}
-          rows={this.state.rows}
-          ptable_filter={this.state.ptableFilter}
-        />
+        {is_loaded ? (
+          <MaterialDataGrid
+            columns={this.props.columns}
+            rows={this.props.rows}
+            ptable_filter={this.state.ptableFilter}
+          />
+        ) : (
+          <div
+            style={{
+              marginTop: "50px",
+              border: "solid 2px rgb(220, 220, 220)",
+              height: "600px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Loading...
+          </div>
+        )}
       </div>
     );
   }
