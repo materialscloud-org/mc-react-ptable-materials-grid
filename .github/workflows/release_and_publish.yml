@@ -1,4 +1,4 @@
-name: Create GitHub release
+name: Release and publish
 
 on:
   push:
@@ -6,11 +6,20 @@ on:
       - "v*"
 
 jobs:
-  release:
+  release_and_publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Install project dependencies
+        run: npm ci
 
       - name: Create GitHub Release
         id: create_release
@@ -22,3 +31,8 @@ jobs:
           release_name: ${{ github.ref }}
           draft: false
           prerelease: false
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
