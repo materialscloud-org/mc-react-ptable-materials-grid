@@ -14,5 +14,5 @@ To make a new version and publish to npm via GitHub Actions:
 
 ```bash
 npm version <patch/minor/major>
-git push --tags
+git push --follow-tags
 ```
