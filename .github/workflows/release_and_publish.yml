@@ -16,10 +16,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "16"
-          registry-url: "https://npm.pkg.github.com"
+          registry-url: "https://registry.npmjs.org/"
 
       - name: Install project dependencies
         run: npm ci
+
+      - name: Build the dist folder
+        run: npm run build
 
       - name: Create GitHub Release
         id: create_release
