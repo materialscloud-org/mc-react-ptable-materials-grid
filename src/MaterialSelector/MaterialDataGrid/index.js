@@ -169,12 +169,14 @@ class MaterialDataGrid extends React.Component {
         formatted_col["cellRenderer"] = spaceGroupSymbolRenderer;
       }
 
+      formatted_col["headerComponentParams"] = {};
+
       if ("unit" in col) {
-        formatted_col["headerComponentParams"] = { unit: col["unit"] };
+        formatted_col["headerComponentParams"].unit = col["unit"];
         delete formatted_col["unit"];
       }
       if ("infoText" in col) {
-        formatted_col["headerComponentParams"] = { infoText: col["infoText"] };
+        formatted_col["headerComponentParams"].infoText = col["infoText"];
         delete formatted_col["infoText"];
       }
 
