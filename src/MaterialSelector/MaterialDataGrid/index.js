@@ -35,6 +35,20 @@ function floatFormatter(params) {
   return params.value.toFixed(2);
 }
 
+function textFormatter(params) {
+  if (params.value == null) {
+    return "-";
+  }
+  return params.value;
+}
+
+function numberFormatter(params) {
+  if (params.value == null) {
+    return "-";
+  }
+  return params.value;
+}
+
 function formulaCellRenderer(params) {
   if (params.value == null) {
     return "-";
@@ -141,11 +155,13 @@ class MaterialDataGrid extends React.Component {
       if (col["colType"] === "text") {
         Object.assign(formatted_col, {
           filter: "agTextColumnFilter",
+          valueFormatter: textFormatter,
         });
       } else if (col["colType"] === "integer") {
         Object.assign(formatted_col, {
           // type: "numericColumn",
           filter: "agNumberColumnFilter",
+          valueFormatter: numberFormatter,
         });
       } else if (col["colType"] === "float") {
         Object.assign(formatted_col, {
