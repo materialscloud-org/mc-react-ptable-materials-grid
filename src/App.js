@@ -35,6 +35,12 @@ function columns(info) {
       infoText: "The full formula in Hill notation.",
     },
     {
+      field: "s",
+      headerName: "test",
+      colType: "float",
+      hide: true,
+    },
+    {
       field: "n_elem",
       headerName: "Num. of elements",
       colType: "integer",

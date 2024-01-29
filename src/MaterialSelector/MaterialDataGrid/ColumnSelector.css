@@ -34,7 +34,7 @@
   z-index: 1;
   line-height: 1.8;
   font-size: 12px;
-  padding-bottom: 5px;
+  /* padding: 2px; */
   right: 0;
   margin-top: -3px;
 }
@@ -45,6 +45,8 @@
   /* border: 1px solid #ccc; */
   border-top: none;
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 .column-dropdown-content label {
   display: inline-block;
@@ -62,6 +64,10 @@
 
 .column-dropdown-content li {
   float: left;
+}
+.column-dropdown-content label {
+  display: block;
+  /* background-color: red; */
 }
 
 /* Change color of dropdown links on hover */
