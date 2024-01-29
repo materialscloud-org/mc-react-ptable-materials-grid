@@ -155,6 +155,7 @@ class MaterialDataGrid extends React.Component {
 
       // convert colType to ag-grid related entries
       delete formatted_col["colType"];
+      // basic column types
       if (col["colType"] === "text") {
         Object.assign(formatted_col, {
           filter: "agTextColumnFilter",
@@ -172,21 +173,31 @@ class MaterialDataGrid extends React.Component {
           filter: "agNumberColumnFilter",
           valueFormatter: floatFormatter,
         });
+        // more specific column types
+      } else if (col["colType"] === "id") {
+        Object.assign(formatted_col, {
+          filter: "agTextColumnFilter",
+          valueFormatter: textFormatter,
+          pinned: "left",
+          cellRenderer: idCellRenderer,
+        });
+      } else if (col["colType"] === "formula") {
+        Object.assign(formatted_col, {
+          filter: "agTextColumnFilter",
+          valueFormatter: textFormatter,
+          cellRenderer: formulaCellRenderer,
+        });
+      } else if (col["colType"] === "spg_symbol") {
+        Object.assign(formatted_col, {
+          filter: "agTextColumnFilter",
+          valueFormatter: textFormatter,
+          cellRenderer: spaceGroupSymbolRenderer,
+        });
       }
+
       Object.assign(formatted_col, {
         filterParams: { buttons: ["reset", "apply"], closeOnApply: true },
       });
-
-      if (col["field"] === "id") {
-        formatted_col["pinned"] = "left";
-        formatted_col["cellRenderer"] = idCellRenderer;
-      }
-      if (col["field"] === "formula") {
-        formatted_col["cellRenderer"] = formulaCellRenderer;
-      }
-      if (col["field"] === "spg_int") {
-        formatted_col["cellRenderer"] = spaceGroupSymbolRenderer;
-      }
 
       formatted_col["headerComponentParams"] = {};
 
