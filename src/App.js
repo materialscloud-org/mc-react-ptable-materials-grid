@@ -132,7 +132,7 @@ function formatRows(entries) {
         id: mc3d_id,
         formula: comp["formula"],
         spg_num: comp["sg"],
-        tot_mag: comp["xc"][func]["tm"] ?? null,
+        tot_mag: 12345.9476,
         abs_mag: comp["xc"][func]["am"] ?? null,
         n_elem: elemArr.length,
         elem_array: elemArr,

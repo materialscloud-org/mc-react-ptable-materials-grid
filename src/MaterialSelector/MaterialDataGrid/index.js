@@ -32,6 +32,9 @@ function floatFormatter(params) {
   if (params.value == null) {
     return "-";
   }
+  if (params.value >= 1e5 || params.value < 0.01) {
+    return params.value.toExponential(2);
+  }
   return params.value.toFixed(2);
 }
 
