@@ -15,6 +15,8 @@ import CustomHeader from "./CustomHeader";
 
 import HelpButton from "../HelpButton";
 
+import ResetButton from "../ResetButton";
+
 function idCellRenderer(params) {
   return (
     <a
@@ -132,6 +134,8 @@ class MaterialDataGrid extends React.Component {
       columnDefs: this.getColumnDefs(),
       numRows: null,
     };
+    this.gridApi = null;
+    this.gridColumnApi = null;
   }
 
   componentDidUpdate(prevProps) {
@@ -296,6 +300,7 @@ class MaterialDataGrid extends React.Component {
               onColumnToggle={this.handleColumnToggle}
               colDefs={this.getColumnDefs().slice(1)}
             />
+            <ResetButton gridApi={this.gridApi} doesExternalFilterPass={this.doesExternalFilterPass} />
           </div>
         </div>
         <div className="ag-theme-alpine">
