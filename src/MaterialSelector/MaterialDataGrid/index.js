@@ -17,7 +17,6 @@ import HelpButton from "../HelpButton";
 
 import ResetButton from "./ResetButton";
 
-import DownloadButton from "../Download";
 
 function idCellRenderer(params) {
   return (
