@@ -323,7 +323,6 @@ class MaterialDataGrid extends React.Component {
               onColumnToggle={this.handleColumnToggle}
               colDefs={this.getColumnDefs().slice(1)}
             />
-            <DownloadButton filteredElements={this.state.filteredRows} />
           </div>
         </div>
         <div className="ag-theme-alpine">
