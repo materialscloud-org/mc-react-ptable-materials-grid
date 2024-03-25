@@ -314,10 +314,10 @@ class MaterialDataGrid extends React.Component {
             Showing {this.state.numRows} entries out of {this.props.rows.length}
           </span>
           <div className="grid_header_row_right_side">
-            <ResetButton gridApi={this.gridApi} doesExternalFilterPass={this.doesExternalFilterPass} rows={this.props.rows} filteredElements={this.state.filteredRows} />
             <div className="help-button-container">
               <HelpButton popover={helpPopover} placement="left" />
             </div>
+            <ResetButton gridApi={this.gridApi} doesExternalFilterPass={this.doesExternalFilterPass} rows={this.props.rows} filteredElements={this.state.filteredRows} />
             <ColumnSelector
               onColumnToggle={this.handleColumnToggle}
               colDefs={this.getColumnDefs().slice(1)}

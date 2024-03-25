@@ -29,24 +29,9 @@ function ResetButton({ gridApi, doesExternalFilterPass, rows, filteredElements }
 function resetFilters(gridApi, doesExternalFilterPass) {
   // Reset filters for each column
   gridApi.forEachNode((node) => {
-    console.log(node.column);
     gridApi.destroyFilter(node.column, false);
   });
-
-  // Retain any external filter
-  if (doesExternalFilterPass) {
-    gridApi.setFilterModel({
-      model: [
-        {
-          type: 'externalFilter',
-          filter: doesExternalFilterPass,
-        },
-      ],
-    });
-  } else {
-    // Remove any existing filter model
-    gridApi.setFilterModel(null);
-  }
+  
 }
 
 export default ResetButton;
