@@ -9,54 +9,82 @@ function calcElementArray(formula) {
   return elements;
 }
 
+function modifyRows(rows, columns) {
+  /*
+    The raw rows need slight modification for the data grid:
+      * elem_array needs to be added, that is used for ptable filtering;
+      * boolean values need to be converted to 'yes'/'no'/null.
+        - todo: this probably should be automatically handled by a custom bool column.
+  */
+
+  let booleanFields = columns
+    .filter((col) => col.colType == "boolean")
+    .map((col) => col.field);
+
+  const modifiedRows = rows.map((row) => {
+    const newRow = { ...row, elem_array: calcElementArray(row["formula"]) };
+    booleanFields.forEach((field) => {
+      if (field in newRow) {
+        newRow[field] = newRow[field] ? "yes" : "no";
+      }
+    });
+    return newRow;
+  });
+  return modifiedRows;
+}
+
 const MaterialSelector = (props) => {
   /* 
     ptableFilter:
       mode - "exact", "include"
       elements - {Ag: num_clicked} (e.g. 1 - one click, 2 - two clicks)
   */
-  const [ptableFilter, setPtableFilter] = useState({ mode: "include", elements: {} });
+  const [ptableFilter, setPtableFilter] = useState({
+    mode: "include",
+    elements: {},
+  });
   const [modifiedRows, setModifiedRows] = useState([]);
 
   useEffect(() => {
-    const newModifiedRows = props.rows.map(row => ({
-      ...row,
-      elem_array: calcElementArray(row["formula"])
-    }));
-    setModifiedRows(newModifiedRows);
-  }, [props.rows]);
+    let modifiedRows = modifyRows(props.rows, props.columns);
+    setModifiedRows(modifiedRows);
+  }, [props.rows, props.columns]);
 
-  const handlePTableChange = useCallback((filter_change) => {
-    let filter_mode = ptableFilter["mode"];
-    let new_filter = structuredClone(ptableFilter);
+  const handlePTableChange = useCallback(
+    (filter_change) => {
+      let filter_mode = ptableFilter["mode"];
+      let new_filter = structuredClone(ptableFilter);
 
-    if ("mode" in filter_change) {
-      new_filter["mode"] = filter_change["mode"];
-      filter_mode = filter_change["mode"];
-      if (filter_change["mode"] === "exact") {
-        for (const [el, sel] of Object.entries(new_filter["elements"])) {
-          if (sel > 1) delete new_filter["elements"][el];
+      if ("mode" in filter_change) {
+        new_filter["mode"] = filter_change["mode"];
+        filter_mode = filter_change["mode"];
+        if (filter_change["mode"] === "exact") {
+          for (const [el, sel] of Object.entries(new_filter["elements"])) {
+            if (sel > 1) delete new_filter["elements"][el];
+          }
         }
       }
-    }
 
-    if ("element" in filter_change) {
-      let el = filter_change["element"];
-      if (!(filter_change["element"] in new_filter["elements"])) {
-        new_filter["elements"][el] = 1;
-      } else {
-        new_filter["elements"][el] += 1;
+      if ("element" in filter_change) {
+        let el = filter_change["element"];
+        if (!(filter_change["element"] in new_filter["elements"])) {
+          new_filter["elements"][el] = 1;
+        } else {
+          new_filter["elements"][el] += 1;
+        }
+        if (filter_mode === "exact") {
+          if (new_filter["elements"][el] === 2)
+            delete new_filter["elements"][el];
+        } else if (filter_mode === "include") {
+          if (new_filter["elements"][el] === 3)
+            delete new_filter["elements"][el];
+        }
       }
-      if (filter_mode === "exact") {
-        if (new_filter["elements"][el] === 2) delete new_filter["elements"][el];
-      } else if (filter_mode === "include") {
-        if (new_filter["elements"][el] === 3) delete new_filter["elements"][el];
-      }
-    }
 
-    setPtableFilter(new_filter);
-    console.log(new_filter)
-  }, [ptableFilter]);
+      setPtableFilter(new_filter);
+    },
+    [ptableFilter]
+  );
 
   const isLoaded = props.columns.length > 0;
 

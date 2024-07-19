@@ -173,7 +173,12 @@ class MaterialDataGrid extends React.Component {
           filter: "agNumberColumnFilter",
           valueFormatter: floatFormatter,
         });
-        // more specific column types
+      } else if (col["colType"] === "boolean") {
+        Object.assign(formatted_col, {
+          filter: "agTextColumnFilter",
+          valueFormatter: textFormatter,
+        });
+        // more special column types
       } else if (col["colType"] === "id") {
         Object.assign(formatted_col, {
           filter: "agTextColumnFilter",
