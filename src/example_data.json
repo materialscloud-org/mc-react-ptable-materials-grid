@@ -1,0 +1,902 @@
+[
+    {
+        "id": "mc3d-10/pbe",
+        "formula": "Ge26Ir8Y6",
+        "spg_num": 223,
+        "tot_mag": null,
+        "spg_int": "Pm-3n",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10000/pbe",
+        "formula": "FeSbV",
+        "spg_num": 216,
+        "tot_mag": null,
+        "spg_int": "F-43m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10005/pbe",
+        "formula": "C4Ba2N4S4",
+        "spg_num": 15,
+        "tot_mag": null,
+        "spg_int": "C2/c",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10006/pbe",
+        "formula": "Ag4F28Ru4",
+        "spg_num": 14,
+        "tot_mag": 11.83,
+        "spg_int": "P2_1/c",
+        "bravais_lat": "mP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10007/pbe",
+        "formula": "Rh4Sn16",
+        "spg_num": 142,
+        "tot_mag": null,
+        "spg_int": "I4_1/acd",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10008/pbe",
+        "formula": "Au4Cu12Sn4",
+        "spg_num": 198,
+        "tot_mag": null,
+        "spg_int": "P2_13",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1001/pbe",
+        "formula": "Mn6Na4O24P6",
+        "spg_num": 15,
+        "tot_mag": 28,
+        "spg_int": "C2/c",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10010/pbe",
+        "formula": "FeLaO3",
+        "spg_num": 221,
+        "tot_mag": 3.14,
+        "spg_int": "Pm-3m",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10014/pbe",
+        "formula": "La6Ni6Zn2",
+        "spg_num": 63,
+        "tot_mag": null,
+        "spg_int": "Cmcm",
+        "bravais_lat": "oC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10015/pbe",
+        "formula": "F16Sb4Tl4",
+        "spg_num": 14,
+        "tot_mag": null,
+        "spg_int": "P2_1/c",
+        "bravais_lat": "mP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10016/pbe",
+        "formula": "CSr",
+        "spg_num": 225,
+        "tot_mag": 2,
+        "spg_int": "Fm-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10017/pbe",
+        "formula": "B4Ir10Mg4Zn2",
+        "spg_num": 127,
+        "tot_mag": null,
+        "spg_int": "P4/mbm",
+        "bravais_lat": "tP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10019/pbe",
+        "formula": "Ag3CrF6",
+        "spg_num": 225,
+        "tot_mag": 2.95,
+        "spg_int": "Fm-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10021/pbe",
+        "formula": "As3Ga3O12",
+        "spg_num": 152,
+        "tot_mag": null,
+        "spg_int": "P3_121",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10023/pbe",
+        "formula": "Ga12Mn4Zr6",
+        "spg_num": 59,
+        "tot_mag": 7.94,
+        "spg_int": "Pmmn",
+        "bravais_lat": "oP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10026/pbe",
+        "formula": "B14Cl2Mg6O26",
+        "spg_num": 219,
+        "tot_mag": null,
+        "spg_int": "F-43c",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10027/pbe",
+        "formula": "Ge6La10O2",
+        "spg_num": 193,
+        "tot_mag": null,
+        "spg_int": "P6_3/mcm",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10031/pbe",
+        "formula": "C4N8Se4",
+        "spg_num": 62,
+        "tot_mag": null,
+        "spg_int": "Pnma",
+        "bravais_lat": "oP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10035/pbe",
+        "formula": "Co2EuGe2",
+        "spg_num": 139,
+        "tot_mag": 6.9,
+        "spg_int": "I4/mmm",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10037/pbe",
+        "formula": "C8O32Yb8",
+        "spg_num": 137,
+        "tot_mag": 16,
+        "spg_int": "P4_2/nmc",
+        "bravais_lat": "tP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10040/pbe",
+        "formula": "Cs6La2N36",
+        "spg_num": 2,
+        "tot_mag": null,
+        "spg_int": "P-1",
+        "bravais_lat": "aP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10042/pbe",
+        "formula": "ErIn",
+        "spg_num": 221,
+        "tot_mag": 2.52,
+        "spg_int": "Pm-3m",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10043/pbe",
+        "formula": "C8Li4N16Yb4",
+        "spg_num": 60,
+        "tot_mag": 4.08,
+        "spg_int": "Pbcn",
+        "bravais_lat": "oP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10044/pbe",
+        "formula": "Nb12Ni8Si4",
+        "spg_num": 227,
+        "tot_mag": null,
+        "spg_int": "Fd-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10048/pbe",
+        "formula": "Ca6Ga4P8",
+        "spg_num": 15,
+        "tot_mag": null,
+        "spg_int": "C2/c",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1005/pbe",
+        "formula": "H8O18P4Rh2",
+        "spg_num": 5,
+        "tot_mag": 3.96,
+        "spg_int": "C2",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10051/pbe",
+        "formula": "BeLiP",
+        "spg_num": 216,
+        "tot_mag": null,
+        "spg_int": "F-43m",
+        "bravais_lat": "cF",
+        "is_theoretical": true
+    },
+    {
+        "id": "mc3d-10055/pbe",
+        "formula": "AsB2P",
+        "spg_num": 115,
+        "tot_mag": null,
+        "spg_int": "P-4m2",
+        "bravais_lat": "tP",
+        "is_theoretical": true
+    },
+    {
+        "id": "mc3d-10057/pbe",
+        "formula": "Bi4Co2Ti8",
+        "spg_num": 140,
+        "tot_mag": null,
+        "spg_int": "I4/mcm",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10060/pbe",
+        "formula": "Au6Ga14Gd2",
+        "spg_num": 167,
+        "tot_mag": 14.02,
+        "spg_int": "R-3c",
+        "bravais_lat": "hR",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10062/pbe",
+        "formula": "Ba2Ni20P12",
+        "spg_num": 64,
+        "tot_mag": null,
+        "spg_int": "Cmce",
+        "bravais_lat": "oC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10066/pbe",
+        "formula": "Ba4Cu4Gd8O20",
+        "spg_num": 62,
+        "tot_mag": 52,
+        "spg_int": "Pnma",
+        "bravais_lat": "oP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10069/pbe",
+        "formula": "Au2F8Li2",
+        "spg_num": 15,
+        "tot_mag": null,
+        "spg_int": "C2/c",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1007/pbe",
+        "formula": "Cu2Mo2O8",
+        "spg_num": 2,
+        "tot_mag": null,
+        "spg_int": "P-1",
+        "bravais_lat": "aP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10070/pbe",
+        "formula": "Ba4Br4I4",
+        "spg_num": 62,
+        "tot_mag": null,
+        "spg_int": "Pnma",
+        "bravais_lat": "oP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10071/pbe",
+        "formula": "Al4S8Zn2",
+        "spg_num": 227,
+        "tot_mag": null,
+        "spg_int": "Fd-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10072/pbe",
+        "formula": "Ca4Ge4Li4",
+        "spg_num": 62,
+        "tot_mag": null,
+        "spg_int": "Pnma",
+        "bravais_lat": "oP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10074/pbe",
+        "formula": "Mo6Se6Tl2",
+        "spg_num": 176,
+        "tot_mag": null,
+        "spg_int": "P6_3/m",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10076/pbe",
+        "formula": "Fe2O12Se4Sr",
+        "spg_num": 10,
+        "tot_mag": 10,
+        "spg_int": "P2/m",
+        "bravais_lat": "mP",
+        "is_theoretical": true
+    },
+    {
+        "id": "mc3d-10078/pbe",
+        "formula": "CrSe4V2",
+        "spg_num": 12,
+        "tot_mag": 0.21,
+        "spg_int": "C2/m",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10083/pbe",
+        "formula": "O24P6Rh6",
+        "spg_num": 74,
+        "tot_mag": null,
+        "spg_int": "Imma",
+        "bravais_lat": "oI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10087/pbe",
+        "formula": "CuO2Pr",
+        "spg_num": 166,
+        "tot_mag": 2,
+        "spg_int": "R-3m",
+        "bravais_lat": "hR",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10088/pbe",
+        "formula": "BiErPt",
+        "spg_num": 216,
+        "tot_mag": 2.74,
+        "spg_int": "F-43m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1009/pbe",
+        "formula": "Cs2Se6Y2Zn2",
+        "spg_num": 63,
+        "tot_mag": null,
+        "spg_int": "Cmcm",
+        "bravais_lat": "oC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10090/pbe",
+        "formula": "In2Sc4",
+        "spg_num": 194,
+        "tot_mag": null,
+        "spg_int": "P6_3/mmc",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10095/pbe",
+        "formula": "Au8Zn24",
+        "spg_num": 223,
+        "tot_mag": null,
+        "spg_int": "Pm-3n",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10098/pbe",
+        "formula": "Rh2Si4Y4",
+        "spg_num": 12,
+        "tot_mag": null,
+        "spg_int": "C2/m",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1010/pbe",
+        "formula": "CaFeO3",
+        "spg_num": 221,
+        "tot_mag": 3.32,
+        "spg_int": "Pm-3m",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10103/pbe",
+        "formula": "CoNi",
+        "spg_num": 221,
+        "tot_mag": 2.39,
+        "spg_int": "Pm-3m",
+        "bravais_lat": "cP",
+        "is_theoretical": true
+    },
+    {
+        "id": "mc3d-10104/pbe",
+        "formula": "Al2K2O16S4",
+        "spg_num": 165,
+        "tot_mag": null,
+        "spg_int": "P-3c1",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10109/pbe",
+        "formula": "C16F8N6S4",
+        "spg_num": 43,
+        "tot_mag": 2,
+        "spg_int": "Fdd2",
+        "bravais_lat": "oF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1011/pbe",
+        "formula": "Ca2Li6Mn2N6",
+        "spg_num": 148,
+        "tot_mag": 4,
+        "spg_int": "R-3",
+        "bravais_lat": "hR",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10111/pbe",
+        "formula": "Eu2Ir4",
+        "spg_num": 227,
+        "tot_mag": 12.36,
+        "spg_int": "Fd-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10112/pbe",
+        "formula": "Mn4O16Te6",
+        "spg_num": 15,
+        "tot_mag": 20,
+        "spg_int": "C2/c",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10114/pbe",
+        "formula": "CdO6Ti2",
+        "spg_num": 162,
+        "tot_mag": 1.96,
+        "spg_int": "P-31m",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10115/pbe",
+        "formula": "H2Hf4Si2",
+        "spg_num": 140,
+        "tot_mag": null,
+        "spg_int": "I4/mcm",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10116/pbe",
+        "formula": "Cu2Li2O8V2",
+        "spg_num": 74,
+        "tot_mag": 2,
+        "spg_int": "Imma",
+        "bravais_lat": "oI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1012/pbe",
+        "formula": "Cl8Hg2PdTl2",
+        "spg_num": 12,
+        "tot_mag": null,
+        "spg_int": "C2/m",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10123/pbe",
+        "formula": "La2Rh2Sn4",
+        "spg_num": 63,
+        "tot_mag": null,
+        "spg_int": "Cmcm",
+        "bravais_lat": "oC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10128/pbe",
+        "formula": "MgNi2",
+        "spg_num": 69,
+        "tot_mag": 0.2,
+        "spg_int": "Fmmm",
+        "bravais_lat": "oF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10132/pbe",
+        "formula": "Br18K4Nb6",
+        "spg_num": 12,
+        "tot_mag": null,
+        "spg_int": "C2/m",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10134/pbe",
+        "formula": "CO4Rb4",
+        "spg_num": 81,
+        "tot_mag": null,
+        "spg_int": "P-4",
+        "bravais_lat": "tP",
+        "is_theoretical": true
+    },
+    {
+        "id": "mc3d-10136/pbe",
+        "formula": "Br16Cs8Hg4",
+        "spg_num": 14,
+        "tot_mag": null,
+        "spg_int": "P2_1/c",
+        "bravais_lat": "mP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10138/pbe",
+        "formula": "F6HfK2",
+        "spg_num": 189,
+        "tot_mag": null,
+        "spg_int": "P-62m",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10139/pbe",
+        "formula": "H8Li8S8",
+        "spg_num": 135,
+        "tot_mag": null,
+        "spg_int": "P4_2/mbc",
+        "bravais_lat": "tP",
+        "is_theoretical": true
+    },
+    {
+        "id": "mc3d-1014/pbe",
+        "formula": "Cu8In8O20",
+        "spg_num": 3,
+        "tot_mag": 8,
+        "spg_int": "P2",
+        "bravais_lat": "mP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10140/pbe",
+        "formula": "PPtTb",
+        "spg_num": 187,
+        "tot_mag": 5.95,
+        "spg_int": "P-6m2",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10141/pbe",
+        "formula": "AsGdNi",
+        "spg_num": 187,
+        "tot_mag": 7.19,
+        "spg_int": "P-6m2",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10142/pbe",
+        "formula": "B6Nb6Ru6",
+        "spg_num": 51,
+        "tot_mag": null,
+        "spg_int": "Pmma",
+        "bravais_lat": "oP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10144/pbe",
+        "formula": "IK",
+        "spg_num": 225,
+        "tot_mag": null,
+        "spg_int": "Fm-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10147/pbe",
+        "formula": "C8N8Ni2Zn2",
+        "spg_num": 132,
+        "tot_mag": null,
+        "spg_int": "P4_2/mcm",
+        "bravais_lat": "tP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10148/pbe",
+        "formula": "Cl8Eu8O12Si4",
+        "spg_num": 87,
+        "tot_mag": 56,
+        "spg_int": "I4/m",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10150/pbe",
+        "formula": "Gd2Mg2Na2O12W2",
+        "spg_num": 4,
+        "tot_mag": 14,
+        "spg_int": "P2_1",
+        "bravais_lat": "mP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10154/pbe",
+        "formula": "CdNNi3",
+        "spg_num": 221,
+        "tot_mag": null,
+        "spg_int": "Pm-3m",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10158/pbe",
+        "formula": "Al2Au",
+        "spg_num": 225,
+        "tot_mag": null,
+        "spg_int": "Fm-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10161/pbe",
+        "formula": "Cr4O8Y4",
+        "spg_num": 88,
+        "tot_mag": 12.05,
+        "spg_int": "I4_1/a",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10164/pbe",
+        "formula": "Ba3CaO9Ru2",
+        "spg_num": 164,
+        "tot_mag": 5.98,
+        "spg_int": "P-3m1",
+        "bravais_lat": "hP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10166/pbe",
+        "formula": "Ba4Hf3S10",
+        "spg_num": 69,
+        "tot_mag": null,
+        "spg_int": "Fmmm",
+        "bravais_lat": "oF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10178/pbe",
+        "formula": "B20InNi21",
+        "spg_num": 221,
+        "tot_mag": null,
+        "spg_int": "Pm-3m",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1018/pbe",
+        "formula": "Ba4In8P8",
+        "spg_num": 11,
+        "tot_mag": null,
+        "spg_int": "P2_1/m",
+        "bravais_lat": "mP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10181/pbe",
+        "formula": "Ni8P4Sn4",
+        "spg_num": 62,
+        "tot_mag": null,
+        "spg_int": "Pnma",
+        "bravais_lat": "oP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10183/pbe",
+        "formula": "Ca6Ir8Sn26",
+        "spg_num": 223,
+        "tot_mag": null,
+        "spg_int": "Pm-3n",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10188/pbe",
+        "formula": "Ba2Cl4O12",
+        "spg_num": 43,
+        "tot_mag": null,
+        "spg_int": "Fdd2",
+        "bravais_lat": "oF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10189/pbe",
+        "formula": "Ge26Lu6Os8",
+        "spg_num": 223,
+        "tot_mag": null,
+        "spg_int": "Pm-3n",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1019/pbe",
+        "formula": "CoF6KRb2",
+        "spg_num": 225,
+        "tot_mag": 4,
+        "spg_int": "Fm-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10190/pbe",
+        "formula": "Cl4Li4O8",
+        "spg_num": 138,
+        "tot_mag": null,
+        "spg_int": "P4_2/ncm",
+        "bravais_lat": "tP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10192/pbe",
+        "formula": "C4Ca2",
+        "spg_num": 15,
+        "tot_mag": null,
+        "spg_int": "C2/c",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-102/pbe",
+        "formula": "Br4N4Pt",
+        "spg_num": 139,
+        "tot_mag": 4.49,
+        "spg_int": "I4/mmm",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10203/pbe",
+        "formula": "AsCu3Se4",
+        "spg_num": 121,
+        "tot_mag": null,
+        "spg_int": "I-42m",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10204/pbe",
+        "formula": "B2Cr2O6",
+        "spg_num": 167,
+        "tot_mag": 6,
+        "spg_int": "R-3c",
+        "bravais_lat": "hR",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10206/pbe",
+        "formula": "Na2Rb8Si36",
+        "spg_num": 227,
+        "tot_mag": null,
+        "spg_int": "Fd-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10207/pbe",
+        "formula": "C40F48",
+        "spg_num": 15,
+        "tot_mag": null,
+        "spg_int": "C2/c",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10211/pbe",
+        "formula": "C3Ca2Na2O9",
+        "spg_num": 38,
+        "tot_mag": null,
+        "spg_int": "Amm2",
+        "bravais_lat": "oA",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10212/pbe",
+        "formula": "CGd3Tl",
+        "spg_num": 221,
+        "tot_mag": 21.18,
+        "spg_int": "Pm-3m",
+        "bravais_lat": "cP",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10213/pbe",
+        "formula": "Al2H12K4Na2",
+        "spg_num": 14,
+        "tot_mag": null,
+        "spg_int": "P2_1/c",
+        "bravais_lat": "mP",
+        "is_theoretical": true
+    },
+    {
+        "id": "mc3d-10216/pbe",
+        "formula": "Cl2Cs2MnO6V2",
+        "spg_num": 35,
+        "tot_mag": 5,
+        "spg_int": "Cmm2",
+        "bravais_lat": "oC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10217/pbe",
+        "formula": "Lu4O14V4",
+        "spg_num": 227,
+        "tot_mag": 3.7,
+        "spg_int": "Fd-3m",
+        "bravais_lat": "cF",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10218/pbe",
+        "formula": "K4P4Pd2",
+        "spg_num": 63,
+        "tot_mag": null,
+        "spg_int": "Cmcm",
+        "bravais_lat": "oC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-10219/pbe",
+        "formula": "Mg4O12Si4",
+        "spg_num": 15,
+        "tot_mag": null,
+        "spg_int": "C2/c",
+        "bravais_lat": "mC",
+        "is_theoretical": false
+    },
+    {
+        "id": "mc3d-1022/pbe",
+        "formula": "Cl4K2Mg",
+        "spg_num": 139,
+        "tot_mag": null,
+        "spg_int": "I4/mmm",
+        "bravais_lat": "tI",
+        "is_theoretical": false
+    }
+]

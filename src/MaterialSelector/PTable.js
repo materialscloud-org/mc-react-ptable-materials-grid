@@ -152,31 +152,38 @@ class SelectionMode extends React.Component {
 
 // ------------------------------------------------------------
 // Functions to determine what elements to enable/disable
-function fitsFilter(elem_array, include, exclude) {
-  // every element specified in "include" needs to be present
-  let incl = include.every((e) => elem_array.includes(e));
+function fitsFilter(elem_array, numClicked) {
+  let elemSet = new Set(elem_array)
+  let include = numClicked[1]
+  let exclude = numClicked[2]
+  // every element specified in "include" needs to be present in elemSet
+  let incl = [...include].every(e => elemSet.has(e));
   // none of the elem_array elements can be in the excluded list
-  let excl = true;
-  if (exclude.length != 0) excl = elem_array.every((e) => !exclude.has(e));
+  let excl = [...elemSet].every(e => !exclude.has(e));
   return incl && excl;
 }
 
 function enabledElements(rows, filter) {
-  var enabledElem = new Set();
+  /*
+    For the exact filtering mode, the same logic as in the "include" mode also
+    makes the most sense. It could be that when selecting elements, no rows are
+    shown, but the remaining enabled elements can produce rows. 
+  */
+  let enabledElem = new Set();
 
-  // for filter["mode"] == "exact"), only include is used
-  let include = [];
-  let exclude = new Set();
+  // turn filter into a set of elements based on number of times clicked
+  let numClicked = {
+    1: new Set(),
+    2: new Set(),
+  }
   for (const [el, sel] of Object.entries(filter["elements"])) {
-    if (sel == 1) include.push(el);
-    if (sel == 2) exclude.add(el);
+    numClicked[sel].add(el)
   }
 
   rows.forEach((row) => {
-    if (fitsFilter(row.elem_array, include, exclude)) {
+    if (fitsFilter(row.elem_array, numClicked)) {
       enabledElem = new Set([...enabledElem, ...row.elem_array]);
     }
-    // enabledElem = new Set([...enabledElem, ...row.elem_array]);
   });
   return enabledElem;
 }
