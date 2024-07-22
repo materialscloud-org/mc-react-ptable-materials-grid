@@ -1,6 +1,6 @@
 {
   "name": "mc-react-ptable-materials-grid",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "author": "Kristjan Eimre <kristjan.eimre@epfl.ch>",
   "main": "dist/index.js",
   "module": "dist/index.js",
