@@ -36,9 +36,9 @@
 }
 
 .help-button-container {
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
+  width: 1.4em;
+  height: 1.4em;
+  font-size: inherit;
 }
 
 /* make the horizontal scrollbar appear at the top of the table */
