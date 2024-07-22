@@ -71,6 +71,8 @@ export default class CustomHeader extends React.Component {
         </div>
       );
 
+    let unitPresent = "unit" in this.props && this.props.unit != null;
+
     let columnTitle = (
       <div
         className="custom-header-label-container"
@@ -80,30 +82,10 @@ export default class CustomHeader extends React.Component {
         {sortSymbol}
         <div className="customHeaderLabel">
           <span>{this.props.displayName}</span>
-          {"unit" in this.props && (
-            <div className="unit-label">({this.props.unit})</div>
-          )}
+          {unitPresent && <div className="unit-label">({this.props.unit})</div>}
         </div>
       </div>
     );
-
-    // wrap the column title in tooltip
-    // let columnTitleWithTooltip = (
-    //   <OverlayTrigger
-    //     delay={500}
-    //     overlay={
-    //       <Tooltip
-    //         style={{
-    //           position: "fixed",
-    //         }}
-    //       >
-    //         text <br /> Click to sort!
-    //       </Tooltip>
-    //     }
-    //   >
-    //     {columnTitle}
-    //   </OverlayTrigger>
-    // );
 
     return (
       <div className="custom-header-container">

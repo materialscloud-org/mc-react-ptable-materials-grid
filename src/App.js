@@ -59,6 +59,7 @@ const COLUMNS = [
     field: "spg_num",
     headerName: "Space group number",
     colType: "integer",
+    unit: null,
   },
   {
     field: "bravais_lat",
