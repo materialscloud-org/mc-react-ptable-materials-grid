@@ -8,10 +8,9 @@
     "bravais_lat": "cP"
   },
   {
-    "id": "mc3d-10000/pbe",
+    "id": "mc3d-10000/pbesol-v2",
     "formula": "FeSbV",
     "spg_num": 216,
-    "tot_mag": null,
     "spg_int": "F-43m",
     "bravais_lat": "cF",
     "is_theoretical": false

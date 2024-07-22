@@ -166,7 +166,7 @@ function getColumnDefs(columns) {
 }
 
 const defaultColDef = {
-  width: 140, // only applies to pinned columns (id)
+  width: 160, // only applies to pinned columns (id)
   minWidth: 140,
   flex: 1,
   sortable: true,
