@@ -25,7 +25,7 @@ export class Element extends React.Component {
   }
 
   handleOnClick() {
-    if (this.props.disabled && this.props.selection == 0) return;
+    if (this.props.disabled && this.props.selection === 0) return;
     if (this.props.onSelectionChange == null) return;
     this.props.onSelectionChange({ element: this.symbol });
   }
@@ -33,7 +33,7 @@ export class Element extends React.Component {
   render() {
     let e_class = `pt_element pt_element-${this.props.num}`;
 
-    if (this.props.disabled && this.props.selection == 0) {
+    if (this.props.disabled && this.props.selection === 0) {
       e_class += " pt_element-disabled";
     } else {
       e_class += ` pt_element-state${this.props.selection}`;
@@ -114,9 +114,6 @@ const helpPopover = (
 );
 
 class SelectionMode extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   // this.props.onSelectionChange({ mode: e.currentTarget.checked })
   render() {
     return (
@@ -153,13 +150,13 @@ class SelectionMode extends React.Component {
 // ------------------------------------------------------------
 // Functions to determine what elements to enable/disable
 function fitsFilter(elem_array, numClicked) {
-  let elemSet = new Set(elem_array)
-  let include = numClicked[1]
-  let exclude = numClicked[2]
+  let elemSet = new Set(elem_array);
+  let include = numClicked[1];
+  let exclude = numClicked[2];
   // every element specified in "include" needs to be present in elemSet
-  let incl = [...include].every(e => elemSet.has(e));
+  let incl = [...include].every((e) => elemSet.has(e));
   // none of the elem_array elements can be in the excluded list
-  let excl = [...elemSet].every(e => !exclude.has(e));
+  let excl = [...elemSet].every((e) => !exclude.has(e));
   return incl && excl;
 }
 
@@ -175,9 +172,9 @@ function enabledElements(rows, filter) {
   let numClicked = {
     1: new Set(),
     2: new Set(),
-  }
+  };
   for (const [el, sel] of Object.entries(filter["elements"])) {
-    numClicked[sel].add(el)
+    numClicked[sel].add(el);
   }
 
   rows.forEach((row) => {
@@ -190,10 +187,6 @@ function enabledElements(rows, filter) {
 // ------------------------------------------------------------
 
 class PTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   makeElements = (start, end) => {
     let items = [];
     for (let i = start; i <= end; i++) {

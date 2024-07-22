@@ -4,7 +4,7 @@ import "./ColumnSelector.css";
 
 function parseInitTicks(colDefs) {
   var initTicks = {};
-  colDefs.map((cd) => {
+  colDefs.forEach((cd) => {
     initTicks[cd.field] = "hide" in cd ? !cd.hide : true;
   });
   return initTicks;

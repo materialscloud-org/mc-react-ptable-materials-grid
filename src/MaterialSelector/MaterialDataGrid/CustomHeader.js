@@ -56,14 +56,14 @@ export default class CustomHeader extends React.Component {
     );
 
     let sortSymbol = "";
-    if (this.state.sortMode == "asc")
+    if (this.state.sortMode === "asc")
       sortSymbol = (
         <div style={{ display: "flex" }}>
           {this.state.multiSort && this.state.sortIndex + 1}
           <i className="ag-icon ag-icon-asc" />
         </div>
       );
-    if (this.state.sortMode == "desc")
+    if (this.state.sortMode === "desc")
       sortSymbol = (
         <div style={{ display: "flex" }}>
           {this.state.multiSort && this.state.sortIndex + 1}

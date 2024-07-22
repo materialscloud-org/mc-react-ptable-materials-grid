@@ -78,7 +78,7 @@ function spaceGroupSymbolRenderer(params) {
   return (
     <span>
       {params.value.split("").map((v, index) => {
-        if (v == "_") {
+        if (v === "_") {
           nextIsSub = true;
           return null;
         }
@@ -253,13 +253,13 @@ class MaterialDataGrid extends React.Component {
   updateNumRows = () => {
     if (this.gridApi) {
       let nRows = this.gridApi.getDisplayedRowCount();
-      if (this.state.numRows != nRows) this.setState({ numRows: nRows });
+      if (this.state.numRows !== nRows) this.setState({ numRows: nRows });
     }
   };
 
   doesExternalFilterPass = (node) => {
     if (node.data) {
-      if (this.props.ptable_filter["mode"] == "exact") {
+      if (this.props.ptable_filter["mode"] === "exact") {
         let selectedElements = Object.keys(
           this.props.ptable_filter["elements"]
         );
@@ -270,14 +270,14 @@ class MaterialDataGrid extends React.Component {
         return len_match && incl;
       }
 
-      if (this.props.ptable_filter["mode"] == "include") {
+      if (this.props.ptable_filter["mode"] === "include") {
         let include = [];
         let exclude = [];
         for (const [el, sel] of Object.entries(
           this.props.ptable_filter["elements"]
         )) {
-          if (sel == 1) include.push(el);
-          if (sel == 2) exclude.push(el);
+          if (sel === 1) include.push(el);
+          if (sel === 2) exclude.push(el);
         }
         // every element specified in "include" needs to be present
         let incl = include.every((e) => node.data.elem_array.includes(e));

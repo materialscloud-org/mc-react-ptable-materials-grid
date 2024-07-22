@@ -18,7 +18,7 @@ function modifyRows(rows, columns) {
   */
 
   let booleanFields = columns
-    .filter((col) => col.colType == "boolean")
+    .filter((col) => col.colType === "boolean")
     .map((col) => col.field);
 
   const modifiedRows = rows.map((row) => {
