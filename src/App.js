@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./App.css";
 import MaterialSelector from "./MaterialSelector";
-import example_data from './example_data.json';
+import example_data from "./example_data.json";
 
 /*
   The MaterialsSelector needs two inputs:
@@ -80,7 +80,7 @@ const COLUMNS = [
     infoText:
       "Total magnetization of the ferromagnetic solution, if it exists.",
   },
-]
+];
 
 /*
   The row data for the MaterialsSelector needs to contain
@@ -88,13 +88,12 @@ const COLUMNS = [
     * 'href' - this link is added to the id column;
 */
 function formatRows() {
-
   // the example data contains everything except for href
   // add a link to the current page for each entry.
 
-  let rows = example_data.map(entry => {
-    return { ...entry, href: "."}
-  })
+  let rows = example_data.map((entry) => {
+    return { ...entry, href: "." };
+  });
 
   return rows;
 }

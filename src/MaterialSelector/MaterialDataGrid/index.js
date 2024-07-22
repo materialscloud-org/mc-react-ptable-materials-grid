@@ -92,10 +92,85 @@ function spaceGroupSymbolRenderer(params) {
   );
 }
 
+function getColumnDefs(columns) {
+  // Convert the input columns to the component into a
+  // column array that is compatible with ag-grid
+  return columns.map((col) => {
+    // clone input column
+    let formatted_col = structuredClone(col);
+
+    // convert colType to ag-grid related entries
+    delete formatted_col["colType"];
+    // basic column types
+    if (col["colType"] === "text") {
+      Object.assign(formatted_col, {
+        filter: "agTextColumnFilter",
+        valueFormatter: textFormatter,
+      });
+    } else if (col["colType"] === "integer") {
+      Object.assign(formatted_col, {
+        // type: "numericColumn",
+        filter: "agNumberColumnFilter",
+        valueFormatter: numberFormatter,
+      });
+    } else if (col["colType"] === "float") {
+      Object.assign(formatted_col, {
+        // type: "numericColumn",
+        filter: "agNumberColumnFilter",
+        valueFormatter: floatFormatter,
+      });
+    } else if (col["colType"] === "boolean") {
+      Object.assign(formatted_col, {
+        filter: "agTextColumnFilter",
+        valueFormatter: textFormatter,
+      });
+      // more special column types
+    } else if (col["colType"] === "id") {
+      Object.assign(formatted_col, {
+        filter: "agTextColumnFilter",
+        valueFormatter: textFormatter,
+        pinned: "left",
+        cellRenderer: idCellRenderer,
+      });
+    } else if (col["colType"] === "formula") {
+      Object.assign(formatted_col, {
+        filter: "agTextColumnFilter",
+        valueFormatter: textFormatter,
+        cellRenderer: formulaCellRenderer,
+      });
+    } else if (col["colType"] === "spg_symbol") {
+      Object.assign(formatted_col, {
+        filter: "agTextColumnFilter",
+        valueFormatter: textFormatter,
+        cellRenderer: spaceGroupSymbolRenderer,
+      });
+    }
+
+    Object.assign(formatted_col, {
+      filterParams: { buttons: ["reset", "apply"], closeOnApply: true },
+    });
+
+    formatted_col["headerComponentParams"] = {};
+
+    if ("unit" in col) {
+      formatted_col["headerComponentParams"].unit = col["unit"];
+      delete formatted_col["unit"];
+    }
+    if ("infoText" in col) {
+      formatted_col["headerComponentParams"].infoText = col["infoText"];
+      delete formatted_col["infoText"];
+    }
+
+    return formatted_col;
+  });
+}
+
 const defaultColDef = {
-  width: 150,
+  width: 140, // only applies to pinned columns (id)
+  minWidth: 140,
+  flex: 1,
   sortable: true,
-  //resizable: true,
+  resizable: false,
 };
 
 const components = {
@@ -129,9 +204,18 @@ class MaterialDataGrid extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      columnDefs: this.getColumnDefs(),
       numRows: null,
     };
+  }
+
+  autoSizeAllColumns = () => {
+    if (this.gridApi) {
+      // this.gridApi.autoSizeAllColumns(true);
+    }
+  };
+
+  componentDidMount() {
+    this.autoSizeAllColumns.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -143,84 +227,13 @@ class MaterialDataGrid extends React.Component {
 
   onGridReady = (params) => {
     this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
     this.gridApi.onFilterChanged();
+
+    this.gridApi.addEventListener("paginationChanged", this.autoSizeAllColumns);
   };
 
-  getColumnDefs() {
-    // process the input column array to be compatible with ag-grid
-    return this.props.columns.map((col) => {
-      // clone input column
-      let formatted_col = structuredClone(col);
-
-      // convert colType to ag-grid related entries
-      delete formatted_col["colType"];
-      // basic column types
-      if (col["colType"] === "text") {
-        Object.assign(formatted_col, {
-          filter: "agTextColumnFilter",
-          valueFormatter: textFormatter,
-        });
-      } else if (col["colType"] === "integer") {
-        Object.assign(formatted_col, {
-          // type: "numericColumn",
-          filter: "agNumberColumnFilter",
-          valueFormatter: numberFormatter,
-        });
-      } else if (col["colType"] === "float") {
-        Object.assign(formatted_col, {
-          // type: "numericColumn",
-          filter: "agNumberColumnFilter",
-          valueFormatter: floatFormatter,
-        });
-      } else if (col["colType"] === "boolean") {
-        Object.assign(formatted_col, {
-          filter: "agTextColumnFilter",
-          valueFormatter: textFormatter,
-        });
-        // more special column types
-      } else if (col["colType"] === "id") {
-        Object.assign(formatted_col, {
-          filter: "agTextColumnFilter",
-          valueFormatter: textFormatter,
-          pinned: "left",
-          cellRenderer: idCellRenderer,
-        });
-      } else if (col["colType"] === "formula") {
-        Object.assign(formatted_col, {
-          filter: "agTextColumnFilter",
-          valueFormatter: textFormatter,
-          cellRenderer: formulaCellRenderer,
-        });
-      } else if (col["colType"] === "spg_symbol") {
-        Object.assign(formatted_col, {
-          filter: "agTextColumnFilter",
-          valueFormatter: textFormatter,
-          cellRenderer: spaceGroupSymbolRenderer,
-        });
-      }
-
-      Object.assign(formatted_col, {
-        filterParams: { buttons: ["reset", "apply"], closeOnApply: true },
-      });
-
-      formatted_col["headerComponentParams"] = {};
-
-      if ("unit" in col) {
-        formatted_col["headerComponentParams"].unit = col["unit"];
-        delete formatted_col["unit"];
-      }
-      if ("infoText" in col) {
-        formatted_col["headerComponentParams"].infoText = col["infoText"];
-        delete formatted_col["infoText"];
-      }
-
-      return formatted_col;
-    });
-  }
-
   handleColumnToggle = (e) => {
-    const columnDefs = this.getColumnDefs();
+    let columnDefs = getColumnDefs(this.props.columns);
     columnDefs.forEach(function (colDef) {
       colDef.hide = false;
       if (colDef.field in e) {
@@ -277,6 +290,11 @@ class MaterialDataGrid extends React.Component {
   };
   // -------------------------------
 
+  onRowDataUpdated = () => {
+    this.updateNumRows();
+    this.autoSizeAllColumns();
+  };
+
   render() {
     const gridOptions = {
       pagination: true,
@@ -287,6 +305,9 @@ class MaterialDataGrid extends React.Component {
       domLayout: "autoHeight",
       headerHeight: 54,
     };
+
+    let columnDefs = getColumnDefs(this.props.columns);
+
     return (
       <div>
         <div className="grid_header_row">
@@ -299,13 +320,13 @@ class MaterialDataGrid extends React.Component {
             </div>
             <ColumnSelector
               onColumnToggle={this.handleColumnToggle}
-              colDefs={this.getColumnDefs().slice(1)}
+              colDefs={columnDefs.slice(1)}
             />
           </div>
         </div>
         <div className="ag-theme-alpine">
           <AgGridReact
-            columnDefs={this.state.columnDefs}
+            columnDefs={columnDefs}
             defaultColDef={defaultColDef}
             rowData={this.props.rows}
             gridOptions={gridOptions}
@@ -313,7 +334,8 @@ class MaterialDataGrid extends React.Component {
             isExternalFilterPresent={this.isExternalFilterPresent}
             doesExternalFilterPass={this.doesExternalFilterPass}
             onFilterChanged={this.updateNumRows}
-            onRowDataUpdated={this.updateNumRows}
+            onFirstDataRendered={this.autoSizeAllColumns}
+            onRowDataUpdated={this.onRowDataUpdated}
             components={components}
           />
         </div>
