@@ -19,7 +19,7 @@
     "id": "mc3d-10005/pbe",
     "formula": "C4Ba2N4S4",
     "spg_num": 15,
-    "tot_mag": null,
+    "tot_mag": -1e1,
     "spg_int": "C2/c",
     "bravais_lat": "mC",
     "is_theoretical": false
@@ -73,7 +73,7 @@
     "id": "mc3d-10014/pbe",
     "formula": "La6Ni6Zn2",
     "spg_num": 63,
-    "tot_mag": null,
+    "tot_mag": -1.07,
     "spg_int": "Cmcm",
     "bravais_lat": "oC",
     "is_theoretical": false
