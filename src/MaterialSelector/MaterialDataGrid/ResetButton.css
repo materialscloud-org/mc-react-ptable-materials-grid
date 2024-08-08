@@ -1,0 +1,22 @@
+.reset-button {
+  padding: 10px;
+  background-color: #f8f8f8;
+  color: #000000;
+  font-family: var(--ag-font-family);
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #babfc7;
+  cursor: pointer;
+  margin-bottom: 3px;
+  margin-top: 2px;
+}
+
+.reset-button:hover {
+  background-color: #dbdbdb;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

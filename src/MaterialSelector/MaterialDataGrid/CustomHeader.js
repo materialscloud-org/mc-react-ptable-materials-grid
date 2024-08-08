@@ -56,20 +56,22 @@ export default class CustomHeader extends React.Component {
     );
 
     let sortSymbol = "";
-    if (this.state.sortMode == "asc")
+    if (this.state.sortMode === "asc")
       sortSymbol = (
         <div style={{ display: "flex" }}>
           {this.state.multiSort && this.state.sortIndex + 1}
           <i className="ag-icon ag-icon-asc" />
         </div>
       );
-    if (this.state.sortMode == "desc")
+    if (this.state.sortMode === "desc")
       sortSymbol = (
         <div style={{ display: "flex" }}>
           {this.state.multiSort && this.state.sortIndex + 1}
           <i className="ag-icon ag-icon-desc" />
         </div>
       );
+
+    let unitPresent = "unit" in this.props && this.props.unit != null;
 
     let columnTitle = (
       <div
@@ -80,30 +82,10 @@ export default class CustomHeader extends React.Component {
         {sortSymbol}
         <div className="customHeaderLabel">
           <span>{this.props.displayName}</span>
-          {"unit" in this.props && (
-            <div className="unit-label">({this.props.unit})</div>
-          )}
+          {unitPresent && <div className="unit-label">({this.props.unit})</div>}
         </div>
       </div>
     );
-
-    // wrap the column title in tooltip
-    // let columnTitleWithTooltip = (
-    //   <OverlayTrigger
-    //     delay={500}
-    //     overlay={
-    //       <Tooltip
-    //         style={{
-    //           position: "fixed",
-    //         }}
-    //       >
-    //         text <br /> Click to sort!
-    //       </Tooltip>
-    //     }
-    //   >
-    //     {columnTitle}
-    //   </OverlayTrigger>
-    // );
 
     return (
       <div className="custom-header-container">
@@ -139,10 +121,8 @@ export default class CustomHeader extends React.Component {
   }
 
   onSortChanged() {
-    if (!this.props.columnApi) {
-      // note: for ag-grid <v28.2.0 the correct columnApi path was
-      // this.props.column.columnApi
-      console.log("COLUMNAPI undefined!");
+    if (!this.props.api) {
+      console.log("CustomHeader: api undefined!");
       return;
     }
 
@@ -150,7 +130,7 @@ export default class CustomHeader extends React.Component {
     if (this.props.column.isSortAscending()) sortMode = "asc";
     if (this.props.column.isSortDescending()) sortMode = "desc";
 
-    let numSortActive = this.props.columnApi
+    let numSortActive = this.props.api
       .getColumnState()
       .filter((s) => s.sort !== null).length;
 

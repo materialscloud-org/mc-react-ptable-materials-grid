@@ -4,7 +4,7 @@ import "./ColumnSelector.css";
 
 function parseInitTicks(colDefs) {
   var initTicks = {};
-  colDefs.map((cd) => {
+  colDefs.forEach((cd) => {
     initTicks[cd.field] = "hide" in cd ? !cd.hide : true;
   });
   return initTicks;
@@ -19,6 +19,16 @@ class ColumnSelector extends React.Component {
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.showCheckboxes = this.showCheckboxes.bind(this);
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
   }
 
   handleToggle = (e) => {
@@ -32,6 +42,18 @@ class ColumnSelector extends React.Component {
     this.setState({ dropdown_show: !this.state.dropdown_show });
   };
 
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      if (this.state.dropdown_show) {
+        this.setState({ dropdown_show: false });
+      }
+    }
+  }
+
   render() {
     let dropdownClass = "column-dropdown-content";
     if (this.state.dropdown_show) {
@@ -40,7 +62,7 @@ class ColumnSelector extends React.Component {
 
     return (
       <div>
-        <div className="column-dropdown">
+        <div ref={this.setWrapperRef} className="column-dropdown">
           <button className="column-dropdown-btn" onClick={this.showCheckboxes}>
             Show columns
           </button>

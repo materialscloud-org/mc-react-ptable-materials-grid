@@ -1,6 +1,6 @@
-/* .App {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+.App {
+  width: calc(100% - 4px);
+  background-color: rgb(239, 239, 255);
+  margin: 2px;
+  padding: 2px;
+}
