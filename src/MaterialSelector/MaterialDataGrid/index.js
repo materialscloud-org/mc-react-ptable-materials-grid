@@ -15,6 +15,8 @@ import CustomHeader from "./CustomHeader";
 
 import HelpButton from "../HelpButton";
 
+import ResetButton from "./ResetButton";
+
 function idCellRenderer(params) {
   return (
     <a
@@ -208,6 +210,7 @@ class MaterialDataGrid extends React.Component {
     super(props);
     this.state = {
       numRows: null,
+      anyColFilterActive: false,
     };
   }
 
@@ -291,7 +294,19 @@ class MaterialDataGrid extends React.Component {
     }
     return true;
   };
+
   // -------------------------------
+
+  onFilterChanged = () => {
+    this.updateNumRows();
+
+    if (this.gridApi) {
+      const filterModel = this.gridApi.getFilterModel();
+      this.setState({
+        anyColFilterActive: Object.keys(filterModel).length > 0,
+      });
+    }
+  };
 
   onRowDataUpdated = () => {
     this.updateNumRows();
@@ -321,6 +336,10 @@ class MaterialDataGrid extends React.Component {
             <div className="help-button-container">
               <HelpButton popover={helpPopover} placement="left" />
             </div>
+            <ResetButton
+              gridApi={this.gridApi}
+              anyColFilterActive={this.state.anyColFilterActive}
+            />
             <ColumnSelector
               onColumnToggle={this.handleColumnToggle}
               colDefs={columnDefs.slice(1)}
@@ -336,7 +355,7 @@ class MaterialDataGrid extends React.Component {
             onGridReady={this.onGridReady}
             isExternalFilterPresent={this.isExternalFilterPresent}
             doesExternalFilterPass={this.doesExternalFilterPass}
-            onFilterChanged={this.updateNumRows}
+            onFilterChanged={this.onFilterChanged}
             onFirstDataRendered={this.autoSizeAllColumns}
             onRowDataUpdated={this.onRowDataUpdated}
             components={components}
