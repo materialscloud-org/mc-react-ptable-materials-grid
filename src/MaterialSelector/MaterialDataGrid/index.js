@@ -214,16 +214,6 @@ class MaterialDataGrid extends React.Component {
     };
   }
 
-  autoSizeAllColumns = () => {
-    if (this.gridApi) {
-      // this.gridApi.autoSizeAllColumns(true);
-    }
-  };
-
-  componentDidMount() {
-    this.autoSizeAllColumns.bind(this);
-  }
-
   componentDidUpdate(prevProps) {
     if (prevProps.ptable_filter !== this.props.ptable_filter) {
       // external filter changed
@@ -234,8 +224,6 @@ class MaterialDataGrid extends React.Component {
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridApi.onFilterChanged();
-
-    this.gridApi.addEventListener("paginationChanged", this.autoSizeAllColumns);
   };
 
   handleColumnToggle = (e) => {
@@ -310,7 +298,6 @@ class MaterialDataGrid extends React.Component {
 
   onRowDataUpdated = () => {
     this.updateNumRows();
-    this.autoSizeAllColumns();
   };
 
   render() {
@@ -356,7 +343,6 @@ class MaterialDataGrid extends React.Component {
             isExternalFilterPresent={this.isExternalFilterPresent}
             doesExternalFilterPass={this.doesExternalFilterPass}
             onFilterChanged={this.onFilterChanged}
-            onFirstDataRendered={this.autoSizeAllColumns}
             onRowDataUpdated={this.onRowDataUpdated}
             components={components}
           />
