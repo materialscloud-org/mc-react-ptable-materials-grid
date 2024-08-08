@@ -4,25 +4,6 @@
   display: inline-block;
 }
 
-/* Dropdown Button */
-.column-dropdown-btn {
-  background-color: #f8f8f8;
-  color: #000000;
-  padding: 10px;
-  font-family: var(--ag-font-family);
-  font-size: 12px;
-  font-weight: bold;
-  border: 1px solid #babfc7;
-  cursor: pointer;
-  margin-bottom: 3px;
-  margin-top: 2px;
-}
-
-/* Dropdown button on hover & focus */
-.column-dropdown-btn:hover {
-  background-color: #dbdbdb;
-}
-
 /* Dropdown Content (Hidden by Default) */
 .column-dropdown-content {
   display: none;

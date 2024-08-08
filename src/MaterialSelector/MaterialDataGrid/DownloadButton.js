@@ -1,11 +1,13 @@
 import React from "react";
 import { saveAs } from "file-saver";
-import "./DownloadButton.css";
 
 function DownloadButton({ gridApi }) {
   const handleDownload = () => {
     const filteredData = [];
     gridApi.forEachNodeAfterFilter((node) => {
+      if ("elem_array" in node.data) {
+        delete node.data.elem_array;
+      }
       filteredData.push(node.data);
     });
 
@@ -15,7 +17,7 @@ function DownloadButton({ gridApi }) {
   };
 
   return (
-    <button onClick={handleDownload} className="download-button">
+    <button onClick={handleDownload} className="aggrid-style-button">
       Download
     </button>
   );

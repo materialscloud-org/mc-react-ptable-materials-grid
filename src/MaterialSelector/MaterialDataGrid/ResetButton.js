@@ -17,7 +17,7 @@ function ResetButton({ gridApi, anyColFilterActive }) {
 
   return (
     <button
-      className={`reset-button ${anyColFilterActive ? "" : "disabled"}`}
+      className={`aggrid-style-button ${anyColFilterActive ? "" : "disabled"}`}
       onClick={handleResetFilters}
       disabled={!anyColFilterActive}
     >

@@ -35,10 +35,21 @@
   font-weight: 600;
 }
 
-.help-button-container {
-  width: 1.4em;
-  height: 1.4em;
-  font-size: inherit;
+.aggrid-style-button {
+  padding: 10px;
+  background-color: #f8f8f8;
+  color: #000000;
+  font-family: var(--ag-font-family);
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #babfc7;
+  cursor: pointer;
+  margin-bottom: 3px;
+  margin-top: 2px;
+}
+
+.aggrid-style-button:hover {
+  background-color: #dbdbdb;
 }
 
 /* make the horizontal scrollbar appear at the top of the table */

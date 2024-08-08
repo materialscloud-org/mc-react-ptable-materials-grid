@@ -139,9 +139,7 @@ class SelectionMode extends React.Component {
             Only selected
           </label>
         </div>
-        <div className="help-button-container">
-          <HelpButton popover={helpPopover} placement="right" />
-        </div>
+        <HelpButton popover={helpPopover} placement="right" />
       </div>
     );
   }

@@ -236,7 +236,7 @@ class MaterialDataGrid extends React.Component {
         colDef.hide = !e[colDef.field];
       }
     });
-    this.gridApi.setColumnDefs(columnDefs);
+    this.gridApi.setGridOption("columnDefs", columnDefs);
   };
 
   // -------------------------------
@@ -322,9 +322,7 @@ class MaterialDataGrid extends React.Component {
             Showing {this.state.numRows} entries out of {this.props.rows.length}
           </span>
           <div className="grid_header_row_right_side">
-            <div className="help-button-container">
-              <HelpButton popover={helpPopover} placement="left" />
-            </div>
+            <HelpButton popover={helpPopover} placement="left" />
             <DownloadButton gridApi={this.gridApi} />
             <ResetButton
               gridApi={this.gridApi}

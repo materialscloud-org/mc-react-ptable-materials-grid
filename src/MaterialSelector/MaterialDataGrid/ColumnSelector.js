@@ -63,7 +63,7 @@ class ColumnSelector extends React.Component {
     return (
       <div>
         <div ref={this.setWrapperRef} className="column-dropdown">
-          <button className="column-dropdown-btn" onClick={this.showCheckboxes}>
+          <button className="aggrid-style-button" onClick={this.showCheckboxes}>
             Show columns
           </button>
           <div className={dropdownClass}>
