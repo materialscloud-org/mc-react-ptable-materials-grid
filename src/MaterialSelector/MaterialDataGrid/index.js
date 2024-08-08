@@ -17,7 +17,7 @@ import { HelpButton } from "mc-react-library";
 
 import ResetButton from "./ResetButton";
 
-import DownloadButton from "../DownloadBtn";
+import DownloadButton from "./DownloadButton";
 
 function idCellRenderer(params) {
   return (
@@ -228,7 +228,6 @@ class MaterialDataGrid extends React.Component {
     this.gridApi.onFilterChanged();
   };
 
-
   handleColumnToggle = (e) => {
     let columnDefs = getColumnDefs(this.props.columns);
     columnDefs.forEach(function (colDef) {
@@ -253,7 +252,7 @@ class MaterialDataGrid extends React.Component {
       if (this.state.numRows !== nRows) this.setState({ numRows: nRows });
     }
   };
-  
+
   doesExternalFilterPass = (node) => {
     if (node.data) {
       if (this.props.ptable_filter["mode"] === "exact") {
@@ -326,6 +325,7 @@ class MaterialDataGrid extends React.Component {
             <div className="help-button-container">
               <HelpButton popover={helpPopover} placement="left" />
             </div>
+            <DownloadButton gridApi={this.gridApi} />
             <ResetButton
               gridApi={this.gridApi}
               anyColFilterActive={this.state.anyColFilterActive}
@@ -334,7 +334,6 @@ class MaterialDataGrid extends React.Component {
               onColumnToggle={this.handleColumnToggle}
               colDefs={columnDefs.slice(1)}
             />
-            <DownloadButton filteredElements={this.state.filteredRows} />
           </div>
         </div>
         <div className="ag-theme-alpine">
