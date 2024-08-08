@@ -210,10 +210,8 @@ class MaterialDataGrid extends React.Component {
     super(props);
     this.state = {
       numRows: null,
-      filteredRows: [],
+      anyColFilterActive: false,
     };
-    this.gridApi = null;
-    this.gridColumnApi = null;
   }
 
   autoSizeAllColumns = () => {
@@ -299,6 +297,17 @@ class MaterialDataGrid extends React.Component {
 
   // -------------------------------
 
+  onFilterChanged = () => {
+    this.updateNumRows();
+
+    if (this.gridApi) {
+      const filterModel = this.gridApi.getFilterModel();
+      this.setState({
+        anyColFilterActive: Object.keys(filterModel).length > 0,
+      });
+    }
+  };
+
   onRowDataUpdated = () => {
     this.updateNumRows();
     this.autoSizeAllColumns();
@@ -329,9 +338,7 @@ class MaterialDataGrid extends React.Component {
             </div>
             <ResetButton
               gridApi={this.gridApi}
-              doesExternalFilterPass={this.doesExternalFilterPass}
-              rows={this.props.rows}
-              filteredElements={this.state.filteredRows}
+              anyColFilterActive={this.state.anyColFilterActive}
             />
             <ColumnSelector
               onColumnToggle={this.handleColumnToggle}
@@ -348,7 +355,7 @@ class MaterialDataGrid extends React.Component {
             onGridReady={this.onGridReady}
             isExternalFilterPresent={this.isExternalFilterPresent}
             doesExternalFilterPass={this.doesExternalFilterPass}
-            onFilterChanged={this.updateNumRows}
+            onFilterChanged={this.onFilterChanged}
             onFirstDataRendered={this.autoSizeAllColumns}
             onRowDataUpdated={this.onRowDataUpdated}
             components={components}
