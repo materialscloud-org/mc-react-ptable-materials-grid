@@ -17,6 +17,7 @@
     "ag-grid-community": "^32.1.0",
     "ag-grid-react": "^32.1.0",
     "bootstrap": "^5.2.2",
+    "file-saver": "^2.0.5",
     "mc-react-library": "^0.3.1",
     "react": "^18.1.0",
     "react-bootstrap": "^2.6.0",

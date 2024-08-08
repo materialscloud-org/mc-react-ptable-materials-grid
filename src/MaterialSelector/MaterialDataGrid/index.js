@@ -17,6 +17,8 @@ import { HelpButton } from "mc-react-library";
 
 import ResetButton from "./ResetButton";
 
+import DownloadButton from "./DownloadButton";
+
 function idCellRenderer(params) {
   return (
     <a
@@ -323,6 +325,7 @@ class MaterialDataGrid extends React.Component {
             <div className="help-button-container">
               <HelpButton popover={helpPopover} placement="left" />
             </div>
+            <DownloadButton gridApi={this.gridApi} />
             <ResetButton
               gridApi={this.gridApi}
               anyColFilterActive={this.state.anyColFilterActive}

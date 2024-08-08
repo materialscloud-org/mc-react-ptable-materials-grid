@@ -1,0 +1,17 @@
+.download-button {
+  padding: 10px;
+  background-color: #f8f8f8;
+  color: #000000;
+  font-family: var(--ag-font-family);
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #babfc7;
+  cursor: pointer;
+  margin-bottom: 3px;
+  margin-top: 2px;
+}
+
+/* Reset button on hover & focus */
+.download-button:hover {
+  background-color: #dbdbdb;
+}
