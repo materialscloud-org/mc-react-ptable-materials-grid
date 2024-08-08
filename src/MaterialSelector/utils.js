@@ -18,8 +18,8 @@ export const RGB_Log_Blend = (p, c0, c1) => {
     "rgb" +
     (x ? "a(" : "(") +
     r(
-      (P * i(a[3] == "a" ? a.slice(5) : a.slice(4)) ** 2 +
-        p * i(e[3] == "a" ? e.slice(5) : e.slice(4)) ** 2) **
+      (P * i(a[3] === "a" ? a.slice(5) : a.slice(4)) ** 2 +
+        p * i(e[3] === "a" ? e.slice(5) : e.slice(4)) ** 2) **
         0.5
     ) +
     "," +

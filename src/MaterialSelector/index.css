@@ -1,5 +1,5 @@
 .material_selector_container {
-  max-width: 940px;
-  width: 95vw;
+  /* max-width: 940px; */
+  width: 100%;
   margin: 0 auto;
 }

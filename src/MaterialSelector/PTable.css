@@ -5,8 +5,8 @@
 }
 
 .ptable_outer {
-  /* width: 95%; */
-  /* margin: 0 auto; */
+  width: 100%;
+  margin: 0 auto;
   /*margin-top: -4vw;*/
   /* max-width: 1700px; */
   /* transform: scale(0.8); */
@@ -142,8 +142,8 @@
   position: relative;
   grid-column: 5 / span 6;
   grid-row: 1 / span 2;
-  width: calc(9 * var(--element-box-size) + 8);
-  height: calc(2 * var(--element-box-size) + 1);
+  /* width: calc(9 * var(--element-box-size) + 8);
+  height: calc(2 * var(--element-box-size) + 1); */
   /* background: rgb(238, 3, 3); */
   border: 1px solid #999;
   border-radius: 3px;
@@ -153,11 +153,11 @@
   justify-content: space-evenly;
   /* background: rgb(236, 236, 236); */
   /* padding-left: 20px; */
+  font-size: var(--selection-mode-font);
 }
 
 .selection_mode_inner {
   /* font-size: calc(0.4 * var(--element-box-size)); */
-  font-size: var(--selection-mode-font);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -173,29 +173,16 @@
 .selection_mode_control input {
   margin-right: 4px;
 }
-
-.help-button-container {
-  width: calc(1.4 * var(--selection-mode-font));
-  height: calc(1.4 * var(--selection-mode-font));
-  font-size: var(--selection-mode-font);
-  /* font-size: calc(0.4 * var(--element-box-size));
-  width: calc(0.6 * var(--element-box-size));
-  height: calc(0.6 * var(--element-box-size)); */
-}
-
 /* ----------------------------- */
 
 @media screen and (max-width: 800px) {
   :root {
-    --element-box-size: 34px;
+    --element-box-size: 4.5vw;
+    --selection-mode-font: min(max(2vw, 8px), 14px);
   }
 }
 
-@media screen and (max-width: 700px) {
-  :root {
-    --element-box-size: 28px;
-    --selection-mode-font: 12px;
-  }
+@media screen and (max-width: 650px) {
   .elem_sym {
     font-size: calc(0.6 * var(--element-box-size));
   }
@@ -204,12 +191,9 @@
   }
 }
 
-@media screen and (max-width: 570px) {
-  :root {
-    --element-box-size: 22px;
-    --selection-mode-font: 10px;
+@media screen and (max-width: 500px) {
+  .selection_mode_outer {
+    grid-column: 4 / span 8;
+    grid-row: 1 / span 3;
   }
-  /* .elem_num {
-    display: none;
-  } */
 }

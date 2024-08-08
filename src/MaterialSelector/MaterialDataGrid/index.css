@@ -36,9 +36,9 @@
 }
 
 .help-button-container {
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
+  width: 1.4em;
+  height: 1.4em;
+  font-size: inherit;
 }
 
 /* make the horizontal scrollbar appear at the top of the table */
@@ -51,7 +51,7 @@
 .ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-floating-top {
   order: 3;
 }
-.ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-body-viewport {
+.ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-body {
   order: 4;
 }
 .ag-root-wrapper .ag-root-wrapper-body .ag-root .ag-floating-bottom {
