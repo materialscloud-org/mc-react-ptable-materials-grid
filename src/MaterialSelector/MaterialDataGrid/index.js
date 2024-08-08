@@ -13,7 +13,7 @@ import ColumnSelector from "./ColumnSelector";
 
 import CustomHeader from "./CustomHeader";
 
-import HelpButton from "../HelpButton";
+import { HelpButton } from "mc-react-library";
 
 import ResetButton from "./ResetButton";
 

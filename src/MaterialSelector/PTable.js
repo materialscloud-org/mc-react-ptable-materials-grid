@@ -2,7 +2,7 @@ import React from "react";
 
 import Popover from "react-bootstrap/Popover";
 
-import HelpButton from "./HelpButton";
+import { HelpButton } from "mc-react-library";
 
 import { elementsInfo, elementClassColors } from "./ptable_data";
 import { RGB_Log_Blend } from "./utils";
