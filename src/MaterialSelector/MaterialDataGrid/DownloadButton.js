@@ -5,10 +5,11 @@ function DownloadButton({ gridApi }) {
   const handleDownload = () => {
     const filteredData = [];
     gridApi.forEachNodeAfterFilter((node) => {
-      if ("elem_array" in node.data) {
-        delete node.data.elem_array;
+      let row = { ...node.data };
+      if ("elem_array" in row) {
+        delete row.elem_array;
       }
-      filteredData.push(node.data);
+      filteredData.push(row);
     });
 
     const json = JSON.stringify(filteredData, null, 2);

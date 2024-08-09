@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  forwardRef,
+  useRef,
+  useImperativeHandle,
+} from "react";
 import PTable from "./PTable";
 import MaterialDataGrid from "./MaterialDataGrid";
 import "./index.css";
@@ -33,7 +40,7 @@ function modifyRows(rows, columns) {
   return modifiedRows;
 }
 
-const MaterialSelector = (props) => {
+const MaterialSelector = forwardRef((props, ref) => {
   /* 
     ptableFilter:
       mode - "exact", "include"
@@ -98,6 +105,7 @@ const MaterialSelector = (props) => {
       <div style={{ marginTop: "5px" }}></div>
       {isLoaded ? (
         <MaterialDataGrid
+          ref={ref}
           columns={props.columns}
           rows={modifiedRows}
           ptable_filter={ptableFilter}
@@ -118,6 +126,6 @@ const MaterialSelector = (props) => {
       )}
     </div>
   );
-};
+});
 
 export default MaterialSelector;

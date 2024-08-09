@@ -1,4 +1,9 @@
-import React from "react";
+import React, {
+  forwardRef,
+  useEffect,
+  useState,
+  useImperativeHandle,
+} from "react";
 
 import Popover from "react-bootstrap/Popover";
 
@@ -207,58 +212,70 @@ const helpPopover = (
   </Popover>
 );
 
-class MaterialDataGrid extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      numRows: null,
-      anyColFilterActive: false,
-    };
-  }
+const MaterialDataGrid = forwardRef((props, ref) => {
+  const [gridApi, setGridApi] = useState(null);
+  const [numRows, setNumRows] = useState(null);
+  const [anyColFilterActive, setAnyColFilterActive] = useState(null);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.ptable_filter !== this.props.ptable_filter) {
-      // external filter changed
-      this.gridApi.onFilterChanged();
+  useImperativeHandle(ref, () => ({
+    getFilteredRows: () => {
+      const filteredData = [];
+      if (gridApi) {
+        gridApi.forEachNodeAfterFilter((node) => {
+          let row = { ...node.data };
+          // filter out internal, implementation-specific fields
+          if ("elem_array" in row) {
+            delete row.elem_array;
+          }
+          filteredData.push(row);
+        });
+      }
+      return filteredData;
+    },
+  }));
+
+  useEffect(() => {
+    if (gridApi) {
+      gridApi.onFilterChanged();
     }
-  }
+  }, [props.ptable_filter]);
 
-  onGridReady = (params) => {
-    this.gridApi = params.api;
-    this.gridApi.onFilterChanged();
+  const onGridReady = (params) => {
+    setGridApi(params.api);
+    params.api.onFilterChanged();
   };
 
-  handleColumnToggle = (e) => {
-    let columnDefs = getColumnDefs(this.props.columns);
-    columnDefs.forEach(function (colDef) {
+  const handleColumnToggle = (e) => {
+    let columnDefs = getColumnDefs(props.columns);
+    columnDefs.forEach((colDef) => {
       colDef.hide = false;
       if (colDef.field in e) {
         colDef.hide = !e[colDef.field];
       }
     });
-    this.gridApi.setGridOption("columnDefs", columnDefs);
+    if (gridApi) {
+      gridApi.setGridOption("columnDefs", columnDefs);
+    }
   };
 
   // -------------------------------
   // External filter handling
 
-  isExternalFilterPresent = () => {
-    return Object.keys(this.props.ptable_filter["elements"]).length > 0;
+  const isExternalFilterPresent = () => {
+    return Object.keys(props.ptable_filter["elements"]).length > 0;
   };
 
-  updateNumRows = () => {
-    if (this.gridApi) {
-      let nRows = this.gridApi.getDisplayedRowCount();
-      if (this.state.numRows !== nRows) this.setState({ numRows: nRows });
+  const updateNumRows = () => {
+    if (gridApi) {
+      let nRows = gridApi.getDisplayedRowCount();
+      if (numRows !== nRows) setNumRows(nRows);
     }
   };
 
-  doesExternalFilterPass = (node) => {
+  const doesExternalFilterPass = (node) => {
     if (node.data) {
-      if (this.props.ptable_filter["mode"] === "exact") {
-        let selectedElements = Object.keys(
-          this.props.ptable_filter["elements"]
-        );
+      if (props.ptable_filter["mode"] === "exact") {
+        let selectedElements = Object.keys(props.ptable_filter["elements"]);
         let len_match = node.data.elem_array.length === selectedElements.length;
         let incl = node.data.elem_array.every((e) =>
           selectedElements.includes(e)
@@ -266,11 +283,11 @@ class MaterialDataGrid extends React.Component {
         return len_match && incl;
       }
 
-      if (this.props.ptable_filter["mode"] === "include") {
+      if (props.ptable_filter["mode"] === "include") {
         let include = [];
         let exclude = [];
         for (const [el, sel] of Object.entries(
-          this.props.ptable_filter["elements"]
+          props.ptable_filter["elements"]
         )) {
           if (sel === 1) include.push(el);
           if (sel === 2) exclude.push(el);
@@ -287,70 +304,66 @@ class MaterialDataGrid extends React.Component {
 
   // -------------------------------
 
-  onFilterChanged = () => {
-    this.updateNumRows();
+  const onFilterChanged = () => {
+    updateNumRows();
 
-    if (this.gridApi) {
-      const filterModel = this.gridApi.getFilterModel();
-      this.setState({
-        anyColFilterActive: Object.keys(filterModel).length > 0,
-      });
+    if (gridApi) {
+      const filterModel = gridApi.getFilterModel();
+      setAnyColFilterActive(Object.keys(filterModel).length > 0);
     }
   };
 
-  onRowDataUpdated = () => {
-    this.updateNumRows();
+  const onRowDataUpdated = () => {
+    updateNumRows();
   };
 
-  render() {
-    const gridOptions = {
-      pagination: true,
-      paginationPageSize: 20,
-      suppressMenuHide: true,
-      enableCellTextSelection: true,
-      ensureDomOrder: true,
-      domLayout: "autoHeight",
-      headerHeight: 54,
-    };
+  const gridOptions = {
+    pagination: true,
+    paginationPageSize: 20,
+    suppressMenuHide: true,
+    enableCellTextSelection: true,
+    ensureDomOrder: true,
+    domLayout: "autoHeight",
+    headerHeight: 54,
+  };
 
-    let columnDefs = getColumnDefs(this.props.columns);
+  let columnDefs = getColumnDefs(props.columns);
 
-    return (
-      <div>
-        <div className="grid_header_row">
-          <span className="rows_text">
-            Showing {this.state.numRows} entries out of {this.props.rows.length}
-          </span>
-          <div className="grid_header_row_right_side">
-            <HelpButton popover={helpPopover} placement="left" />
-            <DownloadButton gridApi={this.gridApi} />
-            <ResetButton
-              gridApi={this.gridApi}
-              anyColFilterActive={this.state.anyColFilterActive}
-            />
-            <ColumnSelector
-              onColumnToggle={this.handleColumnToggle}
-              colDefs={columnDefs.slice(1)}
-            />
-          </div>
-        </div>
-        <div className="ag-theme-alpine">
-          <AgGridReact
-            columnDefs={columnDefs}
-            defaultColDef={defaultColDef}
-            rowData={this.props.rows}
-            gridOptions={gridOptions}
-            onGridReady={this.onGridReady}
-            isExternalFilterPresent={this.isExternalFilterPresent}
-            doesExternalFilterPass={this.doesExternalFilterPass}
-            onFilterChanged={this.onFilterChanged}
-            onRowDataUpdated={this.onRowDataUpdated}
-            components={components}
+  return (
+    <div>
+      <div className="grid_header_row">
+        <span className="rows_text">
+          Showing {numRows} entries out of {props.rows.length}
+        </span>
+        <div className="grid_header_row_right_side">
+          <HelpButton popover={helpPopover} placement="left" />
+          {/* <DownloadButton gridApi={gridApi} /> */}
+          <ResetButton
+            gridApi={gridApi}
+            anyColFilterActive={anyColFilterActive}
+          />
+          <ColumnSelector
+            onColumnToggle={handleColumnToggle}
+            colDefs={columnDefs.slice(1)}
           />
         </div>
       </div>
-    );
-  }
-}
+      <div className="ag-theme-alpine">
+        <AgGridReact
+          columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
+          rowData={props.rows}
+          gridOptions={gridOptions}
+          onGridReady={onGridReady}
+          isExternalFilterPresent={isExternalFilterPresent}
+          doesExternalFilterPass={doesExternalFilterPass}
+          onFilterChanged={onFilterChanged}
+          onRowDataUpdated={onRowDataUpdated}
+          components={components}
+        />
+      </div>
+    </div>
+  );
+});
 
 export default MaterialDataGrid;

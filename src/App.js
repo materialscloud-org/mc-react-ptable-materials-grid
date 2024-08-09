@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import "./App.css";
 import MaterialSelector from "./MaterialSelector";
@@ -117,9 +117,23 @@ function App() {
     });
   }, []);
 
+  // Use ref to get data from the component
+  const materialSelectorRef = useRef(null);
+  const getFilteredRowsFromRef = () => {
+    if (materialSelectorRef.current) {
+      console.log(materialSelectorRef.current.getFilteredRows());
+    }
+  };
   return (
     <div className="App">
-      <MaterialSelector columns={columns} rows={rows} />
+      <button onClick={getFilteredRowsFromRef} style={{ margin: "10px" }}>
+        Get filtered rows
+      </button>
+      <MaterialSelector
+        ref={materialSelectorRef}
+        columns={columns}
+        rows={rows}
+      />
     </div>
   );
 }
