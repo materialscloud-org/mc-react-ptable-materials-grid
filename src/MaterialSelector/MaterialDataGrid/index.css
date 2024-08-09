@@ -17,22 +17,31 @@
   min-height: 300px !important;
 }
 
-.grid_header_row {
+.grid-header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.grid_header_row_right_side {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-
-.rows_text {
+.grid-header-row-showing-text {
   font-size: 20px;
   font-weight: 600;
+}
+
+.grid-header-row-left-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.grid-header-row-right-side {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .aggrid-style-button {

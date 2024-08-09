@@ -197,3 +197,15 @@
     grid-row: 1 / span 3;
   }
 }
+
+@media screen and (max-width: 350px) {
+  :root {
+    --element-box-size: 5vw;
+  }
+  .selection_mode_outer {
+    grid-column: 3 / span 10;
+  }
+  .pt_element {
+    margin: 0px;
+  }
+}

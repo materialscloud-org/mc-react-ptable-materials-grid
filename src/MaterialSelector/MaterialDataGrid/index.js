@@ -22,7 +22,7 @@ import { HelpButton } from "mc-react-library";
 
 import ResetButton from "./ResetButton";
 
-import DownloadButton from "./DownloadButton";
+// import DownloadButton from "./DownloadButton";
 
 function idCellRenderer(params) {
   return (
@@ -196,18 +196,23 @@ const helpPopover = (
       <p>
         The Materials Grid, shown below, contains all the filtered materials.
       </p>
+      <b>Columns</b>
       <p>
-        Selected properties are shown in columns. Click <b>Show columns</b> to
-        hide/show available columns.
+        A selection of properties are shown in columns. Click{" "}
+        <b>Show columns</b> to hide/show all available columns.
       </p>
+      <b>Sorting</b>
       <p>
         The grid can be sorted based on any column by clicking on the
         corresponding label in the header. <b>Holding down shift</b> allows to
         sort based on multiple columns.
       </p>
-      Each column has a menu that contains any additional information about the
-      column, and allows to filter the list of materials. Active filters are
-      indicated by the menu icon turning into a blue filter icon.
+      <b>Column menu and filtering</b>
+      <p>
+        Each column has a menu that contains any additional information about
+        the column, and allows to filter the list of materials. Active filters
+        are indicated by the menu icon turning into a blue filter icon.
+      </p>
     </Popover.Body>
   </Popover>
 );
@@ -238,7 +243,7 @@ const MaterialDataGrid = forwardRef((props, ref) => {
     if (gridApi) {
       gridApi.onFilterChanged();
     }
-  }, [props.ptable_filter]);
+  }, [props.ptable_filter, gridApi]);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
@@ -331,12 +336,16 @@ const MaterialDataGrid = forwardRef((props, ref) => {
 
   return (
     <div>
-      <div className="grid_header_row">
-        <span className="rows_text">
-          Showing {numRows} entries out of {props.rows.length}
-        </span>
-        <div className="grid_header_row_right_side">
-          <HelpButton popover={helpPopover} placement="left" />
+      <div className="grid-header-row">
+        <div className="grid-header-row-left-side">
+          <span className="grid-header-row-showing-text">
+            Showing {numRows} entries out of {props.rows.length}
+          </span>
+          <div style={{ marginLeft: "10px" }}>
+            <HelpButton popover={helpPopover} placement="right" />
+          </div>
+        </div>
+        <div className="grid-header-row-right-side">
           {/* <DownloadButton gridApi={gridApi} /> */}
           <ResetButton
             gridApi={gridApi}
