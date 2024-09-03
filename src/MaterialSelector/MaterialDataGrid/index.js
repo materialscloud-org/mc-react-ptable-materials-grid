@@ -336,7 +336,6 @@ const MaterialDataGrid = forwardRef((props, ref) => {
           </div>
         </div>
         <div className="grid-header-row-right-side">
-          {/* <DownloadButton gridApi={gridApi} /> */}
           <ResetButton
             gridApi={gridApi}
             anyColFilterActive={anyColFilterActive}
