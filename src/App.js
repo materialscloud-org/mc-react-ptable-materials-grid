@@ -53,7 +53,7 @@ const COLUMNS = [
     headerName: "Space group international",
     colType: "spg_symbol",
     infoText: "International short symbol for the space group.",
-    //hide: true,
+    hide: true,
   },
   {
     field: "spg_num",

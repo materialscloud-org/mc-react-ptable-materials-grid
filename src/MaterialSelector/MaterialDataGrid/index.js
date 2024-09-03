@@ -173,6 +173,11 @@ function getColumnDefs(columns) {
       delete formatted_col["infoText"];
     }
 
+    // set default hide value to false
+    if (!("hide" in col)) {
+      formatted_col["hide"] = false;
+    }
+
     return formatted_col;
   });
 }
@@ -221,6 +226,7 @@ const MaterialDataGrid = forwardRef((props, ref) => {
   const [gridApi, setGridApi] = useState(null);
   const [numRows, setNumRows] = useState(null);
   const [anyColFilterActive, setAnyColFilterActive] = useState(null);
+  const [columnDefs, setColumnDefs] = useState(getColumnDefs(props.columns));
 
   useImperativeHandle(ref, () => ({
     getFilteredRows: () => {
@@ -248,19 +254,6 @@ const MaterialDataGrid = forwardRef((props, ref) => {
   const onGridReady = (params) => {
     setGridApi(params.api);
     params.api.onFilterChanged();
-  };
-
-  const handleColumnToggle = (e) => {
-    let columnDefs = getColumnDefs(props.columns);
-    columnDefs.forEach((colDef) => {
-      colDef.hide = false;
-      if (colDef.field in e) {
-        colDef.hide = !e[colDef.field];
-      }
-    });
-    if (gridApi) {
-      gridApi.setGridOption("columnDefs", columnDefs);
-    }
   };
 
   // -------------------------------
@@ -311,7 +304,6 @@ const MaterialDataGrid = forwardRef((props, ref) => {
 
   const onFilterChanged = () => {
     updateNumRows();
-
     if (gridApi) {
       const filterModel = gridApi.getFilterModel();
       setAnyColFilterActive(Object.keys(filterModel).length > 0);
@@ -332,8 +324,6 @@ const MaterialDataGrid = forwardRef((props, ref) => {
     headerHeight: 54,
   };
 
-  let columnDefs = getColumnDefs(props.columns);
-
   return (
     <div>
       <div className="grid-header-row">
@@ -352,12 +342,12 @@ const MaterialDataGrid = forwardRef((props, ref) => {
             anyColFilterActive={anyColFilterActive}
           />
           <ColumnSelector
-            onColumnToggle={handleColumnToggle}
-            colDefs={columnDefs.slice(1)}
+            columnDefs={columnDefs}
+            setColumnDefs={setColumnDefs}
           />
         </div>
       </div>
-      <div className="ag-theme-alpine">
+      <div className="ag-theme-alpine custom-grid-container">
         <AgGridReact
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
