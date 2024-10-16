@@ -143,6 +143,7 @@ function getColumnDefs(columns) {
         valueFormatter: textFormatter,
         pinned: "left",
         cellRenderer: idCellRenderer,
+        minWidth: 160,
       });
     } else if (col["colType"] === "formula") {
       Object.assign(formatted_col, {
@@ -183,11 +184,10 @@ function getColumnDefs(columns) {
 }
 
 const defaultColDef = {
-  width: 160, // only applies to pinned columns (id)
   minWidth: 140,
   flex: 1,
   sortable: true,
-  resizable: false,
+  resizable: true,
 };
 
 const components = {
