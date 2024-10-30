@@ -1,6 +1,14 @@
 [
   {
-    "id": "mc3d-10/pbe",
+    "id": "mc2d-1",
+    "formula": "Ge26Ir8Y6",
+    "spg_num": 223,
+    "tot_mag": null,
+    "spg_int": "Pm-3n",
+    "bravais_lat": "cP"
+  },
+  {
+    "id": "mc2d-3000",
     "formula": "Ge26Ir8Y6",
     "spg_num": 223,
     "tot_mag": null,
@@ -13,6 +21,15 @@
     "spg_num": 216,
     "spg_int": "F-43m",
     "bravais_lat": "cF",
+    "is_theoretical": false
+  },
+  {
+    "id": "mc3d-10150/pbe",
+    "formula": "Gd2Mg2Na2O12W2",
+    "spg_num": 4,
+    "tot_mag": 14,
+    "spg_int": "P2_1",
+    "bravais_lat": "mP",
     "is_theoretical": false
   },
   {
@@ -643,15 +660,6 @@
     "tot_mag": 56,
     "spg_int": "I4/m",
     "bravais_lat": "tI",
-    "is_theoretical": false
-  },
-  {
-    "id": "mc3d-10150/pbe",
-    "formula": "Gd2Mg2Na2O12W2",
-    "spg_num": 4,
-    "tot_mag": 14,
-    "spg_int": "P2_1",
-    "bravais_lat": "mP",
     "is_theoretical": false
   },
   {

@@ -41,12 +41,14 @@ const COLUMNS = [
     headerName: "ID",
     colType: "id",
     infoText: "The unique MC3D identifier of each structure.",
+    width: 160,
   },
   {
     field: "formula",
     headerName: "Formula",
     colType: "formula",
     infoText: "The full formula in Hill notation.",
+    minWidth: 200,
   },
   {
     field: "spg_int",
