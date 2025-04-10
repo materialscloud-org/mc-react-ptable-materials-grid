@@ -4,9 +4,7 @@ import MaterialDataGrid from "./MaterialDataGrid";
 import "./index.css";
 
 function calcElementArray(formula) {
-  let formula_no_numbers = formula.replace(/[0-9]/g, "");
-  let elements = formula_no_numbers.split(/(?=[A-Z])/);
-  return elements;
+  return [...new Set(formula.match(/[A-Z][a-z]?/g))];
 }
 
 function modifyRows(rows, columns) {
