@@ -104,6 +104,25 @@ function spaceGroupSymbolRenderer(params) {
   );
 }
 
+function estimateColumnWidth(headerName) {
+  /*
+  Estimate the column width based on the header.
+  Note that this won't work in all cases (e.g. when the column contents
+  are wider than the header), so one should still be able to manually override this.
+  */
+  const baseCharWidth = 7; // px per character
+  const padding = 40; // px
+
+  const words = headerName.split(/\s+/);
+  const longestWord = Math.max(...words.map((w) => w.length));
+
+  // limit is either longest word for a single line or total length on 2 lines:
+  const charLimit = Math.max(headerName.length / 2, longestWord);
+
+  const estimatedWidth = charLimit * baseCharWidth + padding;
+  return Math.max(estimatedWidth, 120);
+}
+
 function getColumnDefs(columns) {
   // Convert the input columns to the component into a
   // column array that is compatible with ag-grid
@@ -176,6 +195,10 @@ function getColumnDefs(columns) {
     // set default hide value to false
     if (!("hide" in col)) {
       formatted_col["hide"] = false;
+    }
+
+    if (!("minWidth" in col)) {
+      formatted_col["minWidth"] = estimateColumnWidth(col.headerName);
     }
 
     return formatted_col;

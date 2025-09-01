@@ -76,6 +76,13 @@ const COLUMNS = [
       "Does the source database report the structure origin as theoretical?",
   },
   {
+    field: "test",
+    headerName: "Some ColumnWithVeryLongWord",
+    unit: "μB/cell",
+    colType: "float",
+    infoText: "test.",
+  },
+  {
     field: "tot_mag",
     headerName: "Total magnetization",
     unit: "μB/cell",
