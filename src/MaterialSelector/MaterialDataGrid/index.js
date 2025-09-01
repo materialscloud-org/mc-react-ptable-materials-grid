@@ -250,6 +250,11 @@ const MaterialDataGrid = forwardRef((props, ref) => {
     }
   }, [props.ptable_filter, gridApi]);
 
+  useEffect(() => {
+    // update columns if props change
+    setColumnDefs(getColumnDefs(props.columns));
+  }, [props.columns]);
+
   const onGridReady = (params) => {
     setGridApi(params.api);
     params.api.onFilterChanged();

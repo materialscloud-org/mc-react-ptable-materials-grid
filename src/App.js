@@ -126,10 +126,28 @@ function App() {
       console.log(materialSelectorRef.current.getFilteredRows());
     }
   };
+  const updateRows = () => {
+    // Remove some rows
+    loadData().then((loadedData) => {
+      setRows(loadedData.rows.slice(0, 10));
+    });
+  };
+  const updateColumns = () => {
+    // Remove some columns
+    loadData().then((loadedData) => {
+      setColumns(loadedData.columns.slice(0, 3));
+    });
+  };
   return (
     <div className="App">
       <button onClick={getFilteredRowsFromRef} style={{ margin: "10px" }}>
         Get filtered rows
+      </button>
+      <button onClick={updateRows} style={{ margin: "10px" }}>
+        Update rows
+      </button>
+      <button onClick={updateColumns} style={{ margin: "10px" }}>
+        Update columns
       </button>
       <MaterialSelector
         ref={materialSelectorRef}
