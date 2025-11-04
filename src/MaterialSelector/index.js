@@ -100,6 +100,7 @@ const MaterialSelector = forwardRef((props, ref) => {
           columns={props.columns}
           rows={modifiedRows}
           ptable_filter={ptableFilter}
+          columnFilters={props.columnFilters}
         />
       ) : (
         <div

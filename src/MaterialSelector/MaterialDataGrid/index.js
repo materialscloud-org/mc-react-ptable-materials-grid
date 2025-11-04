@@ -274,6 +274,26 @@ const MaterialDataGrid = forwardRef((props, ref) => {
   }, [props.ptable_filter, gridApi]);
 
   useEffect(() => {
+    if (!gridApi || !props.columns?.length || !props.rows?.length) return;
+
+    const { columnFilters } = props;
+    if (!columnFilters || Object.keys(columnFilters).length === 0) return;
+
+    try {
+      // Apply only filters that match existing columns (optional safeguard)
+      const colIds = new Set(props.columns.map((c) => c.field));
+      const validFilters = Object.fromEntries(
+        Object.entries(columnFilters).filter(([key]) => colIds.has(key))
+      );
+
+      gridApi.setFilterModel(validFilters);
+      gridApi.onFilterChanged();
+    } catch (err) {
+      console.warn("⚠️ Failed to apply column filters:", err);
+    }
+  }, [gridApi, props.columnFilters, props.columns, props.rows]);
+
+  useEffect(() => {
     // update columns if props change
     setColumnDefs(getColumnDefs(props.columns));
   }, [props.columns]);

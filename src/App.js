@@ -117,6 +117,7 @@ async function loadData() {
 
 function App() {
   const [columns, setColumns] = useState([]);
+  const [columnFilters, setColumnFilters] = useState({});
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
@@ -145,6 +146,14 @@ function App() {
       setColumns(loadedData.columns.slice(0, 3));
     });
   };
+
+  const applyFilter = () => {
+    // Example: filter 'tot_mag' column for values greater than 1
+    setColumnFilters({
+      tot_mag: { filterType: "number", type: "greaterThan", filter: 1 },
+    });
+  };
+
   return (
     <div className="App">
       <button onClick={getFilteredRowsFromRef} style={{ margin: "10px" }}>
@@ -156,10 +165,14 @@ function App() {
       <button onClick={updateColumns} style={{ margin: "10px" }}>
         Update columns
       </button>
+      <button onClick={applyFilter} style={{ margin: "10px" }}>
+        Apply tot_mag > 1 filter
+      </button>
       <MaterialSelector
         ref={materialSelectorRef}
         columns={columns}
         rows={rows}
+        columnFilters={columnFilters}
       />
     </div>
   );
