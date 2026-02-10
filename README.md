@@ -1,3 +1,9 @@
+> [!WARNING]
+> This repository is **archived** and no longer maintained.
+> 
+> It has been migrated into **https://github.com/materialscloud-org/discover-mcxd-frontend**.
+
+
 # React periodic table and materials grid
 
 A React component for filtering and selecting materials, consisting of an integrated periodic table and a data grid.
